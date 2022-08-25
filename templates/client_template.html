@@ -1,0 +1,371 @@
+
+{% include 'client_header.html' %}
+
+           <div class="col-12 page-heading">
+             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+               <h4 class="mb-sm-0">Manage Template</h4>
+               <div class="page-title-right">
+                 <ol class="breadcrumb m-0">
+                   <li class="breadcrumb-item">
+                     <a href="#">Dashboard</a>
+                   </li>
+                   <li class="breadcrumb-item active">Template</li>
+                 </ol>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="card product-details card-bgchange">
+           <div class="card-header align-items-center d-flex">
+             <h4 class="card-title mb-0 flex-grow-1">Template Details</h4>
+           </div>
+           <div class="card-body">
+             <table class="table table-hover dt-responsive" id="templateList">
+               <thead>
+                 <tr>
+                   <th>#</th>
+                   <th>Template Name</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   {% for file in message %}
+                   <td>{{ forloop.counter }}</td>
+                   <td>{{ file.templates }}</td>
+                   <td>
+                     <div class="btn-group btn-group-sm">
+                       <span class="btn btn-sm btn-warning">
+                         <a href="/view_template/{{file.id}}" target="_blank"><i class="fal fa-eye"></i></a>
+                       </span>
+                       <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success" onclick="temp({{file.id}})">
+                        <i class="fal fa-edit"></i>
+                      </button> 
+                      <button type="button" data-target="#sendmail" data-toggle="modal" class="btn btn-sm btn-primary" onclick="tempsent({{file.id}})">
+                        <i class="fal fa-paper-plane"></i>
+                      </button> 
+                     </div>
+                   </td>
+                 </tr>
+                 {% endfor %}
+<!--                 <tr>-->
+<!--                   <td>2</td>-->
+<!--                   <td>Secuodsoft Technologies Private Limited</td>-->
+<!--                   <td>-->
+<!--                     <div class="btn-group btn-group-sm">-->
+<!--                       <span class="btn btn-sm btn-warning">-->
+<!--                         <a href="https://colorlib.com/etc/email-template/1/index.html#"><i class="fal fa-eye"></i></a>-->
+<!--                       </span>-->
+<!--                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button> -->
+<!--                      <button type="button" data-toggle="modal" data-target="#sendmail" class="btn btn-sm btn-primary">-->
+<!--                        <i class="fal fa-paper-plane"></i>-->
+<!--                      </button> -->
+<!--                     </div>-->
+<!--                   </td>-->
+<!--                 </tr>-->
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- edit modal -->
+
+ <div class="modal fade bd-example-modal-lg" id="edit">
+   <div class="modal-dialog edit-contentdetal modal-lg">
+     <div class="modal-content template-edit p-0">
+       <!-- Modal Header -->
+       <div class="modal-header">
+         <h4 class="modal-title">Edit Template</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <!-- Modal body -->
+       <div  class="modal-body">
+           <form action="client_template_details/{{user.id}}"  method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+            <div class="row">
+           <div class="col-lg-6 col-sm-12 col-12">
+              <div class="form-group">
+               <label>Template Logo </label>
+               <div class="logo-priview"><img src="../static/assets/images/Invoice-logo.png"></div>
+               <input type="file" class="form-control-file" id="logo" name="logo">
+              </div>
+           </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label>Comapany Website Link</label>
+              <input type="url" class="form-control" id="companyurl" name="companyurl">
+            </div>
+           </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label>Welcome Text</label>
+              <input type="text" class="form-control" id="wtext" name="wtext">
+            </div>
+           </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+             <label>Title</label>
+             <input type="text" class="form-control" id="title" name="title">
+            </div>
+           </div>
+            <div class="col-lg-6 col-sm-12 col-12">
+              <div class="form-group">
+                <label>Button Name</label>
+                <input type="text" class="form-control" id="bname" name="bname">
+              </div>
+           </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+             <div class="form-group">
+                <label>Button Link</label>
+                <input type="url" class="form-control" id="buttonurl" name="buttonurl">
+              </div>
+           </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" rows="3" id="description" name="description"></textarea>
+              </div>
+               <input type="text" name="fileid" id="fileid" style="display:none">
+            </div>
+           <div class="col-lg-6 col-sm-12 col-12">
+              <div class="form-group">
+                <label>Copyright</label>
+                <input type="text" class="form-control" id="copyright" name="copyright">
+              </div>
+           </div>
+          </div>
+            <button type="submit" class="btn btn-primary bttn-editcode" id="save">Save <i class="fal fa-arrow-to-right"></i></button>
+           </form>
+               <button type="button" class="btn btn-primary bttn-editcode swalDefaultSucces" style="display:none" id="update" onclick="update()">Update<i class="fal fa-arrow-to-right"></i></button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <!-- sendmail modal -->
+
+ <div class="modal fade bd-example-modal-lg" id="sendmail">
+   <div class="modal-dialog edit-contentdetal modal-lg">
+     <div class="modal-content template-edit p-0">
+       <!-- Modal Header -->
+       <div class="modal-header">
+         <h4 class="modal-title">Send Mail</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <!-- Modal body -->
+       <form action="/send_email/{{user.id}}" class="modal-body" method="post" onsubmit="DoOnSubmit()">
+           {% csrf_token %}
+          <div class="row">
+           <div class="col-12">
+            <b>Template Name : </b><br>
+               <span class="companyname" id="tempname"></span>
+               <input type="text" name="fileids" id="fileids" style="display:none">
+           </div>
+              <div class="form-group choosegroup">
+               <label><b>Select Group</b></label>
+                  <div class="form-check">
+                    <label class="form-check-label" for="check1">
+                        {% for group in groups %}
+                            {% if group.cid == user.id %}
+                      <input type="checkbox" class="form-check-input" id="checks" name="checks[]" value="{{ group.name }}" >{{ group.name }} </label><br>
+                      {% endif %}
+                  {% endfor %}
+                  </div>
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label" for="check2">-->
+<!--                      <input type="checkbox" class="form-check-input" id="check2" value="Group2">Group 2 (5 Member)</label>-->
+<!--                  </div>-->
+<!--                  <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                      <input type="checkbox" class="form-check-input" value="Group3">Group  3 (25 Member)</label>-->
+<!--                  </div>-->
+              </div>
+
+<!--              <div class="col-12">-->
+<!--                <b>Total Member : </b><span class="member">300</span>-->
+<!--              </div>-->
+
+            </div>
+           <button type="submit"  class="btn btn-primary bttn-editcode swalDefaultSuccess" id="SubmitButton">Send <i class="fal fa-external-link"></i></i>
+           <button type="button" disabled  class="btn btn-primary bttn-editcode" id="submitdisable" style="display:none;">Sending..  <i class="fa fa-spinner fa-spin" style="background:#1d366700"></i>
+           </button>
+           </button>
+       </form>
+     </div>
+   </div>
+ </div>
+
+{% include 'client_footer.html' %}
+
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#templateList").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // datatable init. start//
+      </script>  
+
+      <script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Email Sent Successfully.'
+      })
+    });
+    $('.swalDefaultInfo').click(function() {
+      Toast.fire({
+        icon: 'info',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultError').click(function() {
+      Toast.fire({
+        icon: 'error',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultWarning').click(function() {
+      Toast.fire({
+        icon: 'warning',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultQuestion').click(function() {
+      Toast.fire({
+        icon: 'question',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultSucces').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'The information is Updated.'
+      })
+    });
+
+
+$('.delete-msg').click(function() {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+});
+
+  });
+</script>
+<script>
+    function temp(val)
+    {
+      var t = val
+      console.log(t)
+      document.getElementById("fileid").value = t;
+      {% for tempe in messages %}
+        x = {{tempe.file_id}}
+        console.log(x)
+        if (x == t){
+            console.log("HIIII")
+            document.getElementById("logo").innerHTML = "{{tempe.logo}}";
+            document.getElementById("companyurl").value = "{{tempe.logolink}}";
+            document.getElementById("wtext").value = "{{tempe.welcomeText}}";
+            document.getElementById("title").value = "{{tempe.title}}";
+            document.getElementById("bname").value = "{{tempe.buttonname}}";
+            document.getElementById("buttonurl").value = "{{tempe.buttonlink}}";
+            document.getElementById("description").value = "{{tempe.description}}";
+            document.getElementById("copyright").value = "{{tempe.copyright}}";
+            document.getElementById("update").style.display='';
+            document.getElementById("save").style.display='None';
+        }
+        {% endfor %}
+    }
+
+    function tempsent(val)
+    {
+      var t = val
+      console.log(t)
+      document.getElementById("fileids").value = t;
+      {% for tempe in message %}
+        if (t == {{tempe.id}}){
+            document.getElementById("tempname").innerHTML = "{{tempe.templates}}";
+        }
+      {% endfor %}
+<!--      $.ajax({-->
+<!--        url: 'http:///send_email/'+t+'/'+{{user.id}},-->
+<!--      });-->
+<!--        window.location.replace('/client_template');-->
+    }
+
+
+<!--    function tempsents(){-->
+<!--        console.log("HIIII")-->
+<!--        var h = document.getElementById("tempname").innerHTML;-->
+<!--        var i = document.querySelector('.form-check-input').checked.innerHTML;-->
+<!--        console.log(i)-->
+<!--        $.ajax({-->
+<!--        url: 'http:///send_email/'+h+'/'+{{user.id}},-->
+<!--        });-->
+<!--        window.location.replace('/client_template');-->
+<!--    }-->
+</script>
+ <script>
+        function DoOnSubmit(){
+          var SubmitButtonElement = document.getElementById("SubmitButton");
+          SubmitButtonElement.style.display = "none";
+
+          var SubmitButtonElement = document.getElementById("submitdisable");
+          SubmitButtonElement.style.display = "block";
+
+<!--          var SubmittingNote = document.getElementById("SubmitNotice");-->
+<!--          SubmittingNote.style.display = "inline";-->
+          return false;
+        }
+        function update(){
+            var companyurl = document.getElementById("companyurl").value;
+            var wtext = document.getElementById("wtext").value;
+            var title = document.getElementById("title").value;
+            var bname = document.getElementById("bname").value;
+            var buttonurl = document.getElementById("buttonurl").value;
+            var description = document.getElementById("description").value;
+            var copyright = document.getElementById("copyright").value;
+            var fileid = document.getElementById("fileid").value;
+             $.ajax({
+                type: "GET",
+                url: "{% url 'update_client_template_details' %}" ,
+                data:{"companyurl":companyurl, "wtext":wtext,"title":title, "bname":bname,
+                        "buttonurl":buttonurl, "description":description, "copyright":copyright,  "fileid":fileid},
+                });
+                window.location.replace('/client_template');
+                 }
+
+    </script>
+     
+</html>

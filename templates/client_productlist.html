@@ -1,0 +1,97 @@
+
+{% include 'client_header.html' %}
+
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Product List</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Product List</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card product-details card-bgchange">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Product List</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="productList">
+              <thead>
+                <tr>
+<!--                  <th>#</th>-->
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Duration</th>
+                  <th>Start Date</th>
+                  <th>Expiry Date</th>
+                  <th>Due Qty.</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for invoice in message %}
+                  {% if invoice.customer == user.user_name %}
+<!--                   <td>{{ forloop.counter0 }}</td>-->
+                  <td>{{ invoice.productName }} <span class="product-decr">
+                      <small>{{ product.description }}</small>
+                    </span>
+                  </td>
+                  <td>₹ {{ invoice.price }}</td>
+                  <td>{{ invoice.duration }} Days</td>
+                  <td>{{ invoice.active_date }}</td>
+                  <td>{{ invoice.expiry_date }}</td>
+                  <td>{{invoice.due_quantity}}</td>
+                  <td>
+                      <span class="badge badge-soft-success text-uppercase">Active</span>
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+<!--                <tr>-->
+<!--                  <td>1</td>-->
+<!--                  <td>2 Lakhs<span class="product-decr">-->
+<!--                      <small>( Giving information on its origins as well as a random )</small>-->
+<!--                    </span>-->
+<!--                  </td>-->
+<!--                  <td>₹ 20,000</td>-->
+<!--                  <td>150 Days</td>-->
+<!--                  <td>10.08.2022</td>-->
+<!--                  <td>20.10.2022</td>-->
+<!--                  <td>0</td>-->
+<!--                  <td>-->
+<!--                      <span class="badge badge-soft-danger text-uppercase">Expried</span>-->
+<!--                     -->
+<!--                  </td>-->
+<!--                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% include 'client_footer.html' %}
+   
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#productList").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // productdatatable init. start//
+
+      </script> 
+
+      

@@ -1,0 +1,159 @@
+{% include 'admin_header.html' %}
+  <div class="col-12 page-heading">
+    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">Customer Details</h4>
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"> <a href="#">Dashboard</a> </li>
+          <li class="breadcrumb-item active">Customer Details</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- page-heading -->
+  </div>
+  <!-- row end -->
+  <div class="card admin-details card-bgchange">
+    <div class="card-header align-items-center d-flex">
+      <h4 class="card-title mb-0 flex-grow-1">Customer Details</h4> </div>
+    <div class="searchgroup">
+      <form action="">
+        <div class="row">
+          <div class="form-group col-lg-3 col-sm-6 col-12">
+            <label>Select Client</label>
+            <select class="productselct form-control select2bs4">
+              <option value="" selected="selected">All</option>
+              <option value="">Client 1</option>
+              <option value="">Client 2</option>
+              <option value="">Client 3</option>
+              <option value="">Client 4</option>
+              <option value="">Client 5</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover dt-responsive" id="clientdeatils">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>State</th>
+            <th>Group</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sorting_1">1</td>
+            <td>Argentina</td>
+            <td>adrissell0@edubl.org</td>
+            <td>000 0000 000</td>
+            <td>Selangor</td>
+            <td>Group1, Group2</td>
+          </tr>
+          <tr class="even">
+            <td class="sorting_1">2</td>
+            <td>Charde Marshall </td>
+            <td>adrissell0@edubl.org</td>
+            <td>000 0000 000</td>
+            <td>Selangor</td>
+            <td>Group3, Group4</td>
+          </tr>
+          <tr class="odd">
+            <td class="sorting_1">3</td>
+            <td>Brielle Williamson </td>
+            <td>adrissell0@edubl.org</td>
+            <td>000 0000 000</td>
+            <td>Selangor</td>
+            <td>Group1, Group4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- admin-details end -->
+  </div>
+  </div>
+  <!-- page-content end -->
+  </div>
+  <!-- main-content end -->
+  </div>
+{% include 'admin_footer.html' %}
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript">
+    // datatable init. start//
+    $(function() {
+      $("#clientdeatils").DataTable({
+        "responsive": false,
+        "lengthChange": true,
+        "autoWidth": false,
+        "scrollX": true,
+      })
+    });
+    // datatable init. start//
+    </script>
+    <!-- sweet alert js -->
+    <script>
+    $(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      $('.swalDefaultSuccess').click(function() {
+        Toast.fire({
+          icon: 'success',
+          title: ' The information was successfully updated.'
+        })
+      });
+      $('.swalDefaultInfo').click(function() {
+        Toast.fire({
+          icon: 'info',
+          title: 'Admin information successfully updated.'
+        })
+      });
+      $('.swalDefaultError').click(function() {
+        Toast.fire({
+          icon: 'error',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+      $('.swalDefaultWarning').click(function() {
+        Toast.fire({
+          icon: 'warning',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+      $('.swalDefaultQuestion').click(function() {
+        Toast.fire({
+          icon: 'question',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+        })
+      });
+      $('.delete-msg').click(function() {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if(result.isConfirmed) {}
+        })
+      });
+    });
+    </script>
+    <script>
+    $(function() {
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+    </script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Login Page</title>
+  <link rel='stylesheet' href='https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css'>
+  <link href="static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/css/login.css" rel="stylesheet"> </head>
+
+<body>
+  <section class="login-wrapper">
+    <div class="loginpage">
+      <div class="loginform col-lg-6 col-sm-12 col-12">
+        <div class="formpage">
+          <h2>Login Into Your Account</h2>
+          <form action="/page" name="myForm" method="post">
+            {% csrf_token %}
+            <div class="inputBx">
+              <input type="email" name="email" required="required"> <span>Login</span> <i class="fas fa-user-circle"></i> </div>
+            <div class="inputBx password">
+              <input id="password-input" type="password" required="required" name="password"> <span>Password</span>
+              <a href="#" class="password-control" onclick="return show_hide_password(this);"></a> <i class="fas fa-key"></i> </div>
+            <label class="remember">
+              <input type="checkbox"> Remember</label>
+            <label class="forgetpasword"><a href="#"> Forgot password?</a></label>
+            <div class="inputBx">
+              <input type="submit" value="Log in"></div>
+          </form>
+        </div>
+      </div>
+      <div class="welcomelogin col-lg-6 col-sm-12 col-12">
+        <div class="welcomepage">
+           <div class="companylogo text-center">
+            <img src="static/assets/images/email.png">
+          </div>
+           <h2>Welcome</h2>
+           <p>Welcome to Secuodsoft Email Marketing Dashboard</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<script>
+function show_hide_password(target) {
+  var input = document.getElementById('password-input');
+  if(input.getAttribute('type') == 'password') {
+    target.classList.add('view');
+    input.setAttribute('type', 'text');
+  } else {
+    target.classList.remove('view');
+    input.setAttribute('type', 'password');
+  }
+  return false;
+}
+</script>
+
+</html>

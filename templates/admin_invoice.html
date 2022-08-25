@@ -1,0 +1,639 @@
+{% include 'admin_header.html' %}
+
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Create Invoice</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Create Invoice</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="superadmin-detable">
+          <div class="viewadmin-detable">
+            <from class="card invoice-detail">
+              <div class="card-body" id="step1">
+                <!-- progressbar -->
+                <ul class="progressbar">
+                  <li class="active admindetail">
+                    <span class="circle">01</span>
+                    <h5 class="step-title">Client Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li>
+                    <span class="circle">02</span>
+                    <h5 class="step-title">Product and Payment Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li>
+                    <span class="circle">03</span>
+                    <h5 class="step-title">Create Invoice</h5>
+                  </li>
+                </ul>
+                <div class="invoiceform-card">
+                  <div class="form-card edit-contentdetal">
+                    <div class="row">
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Client Name </label>
+                          <div class="icontext-style autorusult-fm">
+                            <span class="icon-group-addon">
+                              <i class="far fa-user-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                            <p id="umessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Email Id/User Name</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-envelope-open-text"></i>
+                            </span>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+                            <p id="emessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Password</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-envelope-open-text"></i>
+                            </span>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="Enter Password">
+                            <p id="pmessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Mobile Number</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-phone-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Contact number">
+                            <p id="mmessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Country</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-globe-asia"></i>
+                            </span>
+                            <select name="country" class="form-control selectpicker" id="country">
+                              <option value="">Select your Country</option>
+                              <option>India</option>
+                              <option>USA</option>
+                              <option>Philippines</option>
+                            </select>
+                            <p id="cmessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>State</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-map-marker-alt"></i>
+                            </span>
+                            <select name="State" class="form-control selectpicker" id="state">
+                              <option value="">Select your State</option>
+                              <option>Odisha</option>
+                              <option>New Delhi</option>
+                            </select>
+                            <p id="smessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-12 col-sm-12 col-12 float-left">
+                          <label>Address</label>
+                          <textarea class="form-control" name="address" rows="3" id="address"></textarea>
+                          <p id="amessage" style="color:red"></p>
+                        </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary bttn-editcode" onclick="showstep2()">Save</button>
+                </div>
+              </div>
+              <div class="card-body" id="step2" style="display:none;">
+                <!-- progressbar -->
+                <ul class="progressbar">
+                  <li>
+                    <span class="circle">01</span>
+                    <h5 class="step-title">Client Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li class="active payproduct">
+                    <span class="circle">02</span>
+                    <h5 class="step-title">Product and Payment Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li>
+                    <span class="circle">03</span>
+                    <h5 class="step-title">Create Invoice</h5>
+                  </li>
+                </ul>
+                <div class="invoiceform-card">
+                  <div class="form-card edit-contentdetal">
+                    <div class="row">
+                        <div class="warning-notify col-lg-12 col-sm-12 col-12 float-left">
+                          <p>Please do not use refresh button while entering your product</p>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Product Name </label>
+                          <div class="icontext-style">
+                            <!-- <span class="icon-group-addon">
+                              <i class="far fa-shopping-bag"></i>
+                            </span> -->
+                            {% if message %}
+                            <select class="productselct form-control select2bs4" id="pname" name="pname" onchange="product(this.value)">
+                              <option disabled="true" selected>Select Product</option>
+                              {% for client in message %}
+                                {% if client.user_id == user.id %}
+                              <option>{{ client.name }}</option>
+                              {% endif %}
+                              {% endfor %}
+                            </select>
+                              {% else %}
+                                No Product
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Price</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-money-bill-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" id="price" placeholder="Enter Price">
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Duration</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-hourglass-half"></i>
+                            </span>
+                            <input type="text" class="form-control" id="duration" placeholder="Enter Duration" >
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Active Date</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-calendar-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" id="startdate" placeholder="Enter Active Date" onchange="expirydate()">
+                          </div>
+                          <small>Exp. Date: <span id="expiry_date"></span></small>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Payment method</label>
+                          <div class="icontext-style">
+                            <span class="icon-group-addon">
+                              <i class="far fa-globe-asia"></i>
+                            </span>
+                            <select name="payment" id="payment" class="form-control selectpicker">
+                              <option value="">Select your Payment method</option>
+                              <option>Cash</option>
+                              <option>UPI</option>
+                              <option>Debit Card</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Description</label>
+                          <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <button type="button" class="btn btn-primary bttn-editcode" onclick="add_product()">ADD <i class="fal fa-plus"></i></button>
+                  </div>
+                  <div class="table-responsive productdetal-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Duration</th>
+                          <th>Active Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <button type="button" class="btn btn-primary bttn-editcode" id="button2" onclick="showstep3()">Save </button>
+                </div>
+              </div>
+              <div class="card-body" id="step3" style="display:none;">
+                <!-- progressbar -->
+                <ul class="progressbar">
+                  <li>
+                    <span class="circle">01</span>
+                    <h5 class="step-title">Client Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li>
+                    <span class="circle">02</span>
+                    <h5 class="step-title">Product and Payment Details</h5>
+                    <div class="border-line"></div>
+                  </li>
+                  <li class="active invoicecrat">
+                    <span class="circle">03</span>
+                    <h5 class="step-title">Create Invoice</h5>
+                  </li>
+                </ul>
+                <div class="invoiceform-card text-center">
+                  <div class="form-card edit-contentinvoice">
+                    <h3>Your Invoice Successfully Created <span>
+                        <i class="far fa-check-circle"></i>
+                      </span>
+                    </h3>
+                  </div>
+                  <a href="../invoice.html" class="btn btn-sm btn-primary bttn-printcode" target="_blank">Send Invoice <i class="fa fa-print"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--- View Admin Details --->
+        </div>
+        <!-- superadmin-detable end -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% include 'admin_footer.html' %}
+
+
+
+
+   <!-- JAVASCRIPT -->
+   <script type="text/javascript">
+      // datatable init. start//
+       $(function () {
+         $("#example1").DataTable({
+           "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+         })
+       });
+      // datatable init. start//
+   </script>  
+   
+   <script>
+      function showstep2() {
+         var username = document.getElementById("username").value;
+         var email = document.getElementById("email").value;
+         var password = document.getElementById("password").value;
+         var mobile = document.getElementById("mobile").value;
+         var country = document.getElementById("country").value;
+         var state = document.getElementById("state").value;
+         var address = document.getElementById("address").value;
+         var email_pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+         if((username.trim()).length < 1 ){
+             document.getElementById("umessage").innerHTML = "Enter Name";
+         }
+         else if ((email.trim()).length < 1 ){
+             document.getElementById("emessage").innerHTML = "Enter proper Email ID";
+         }
+         else if (!email_pattern.test(email)){
+              document.getElementById("emessage").innerHTML = "Enter proper Email ID";
+         }
+         else if ((password.trim()).length < 1 ){
+             document.getElementById("pmessage").innerHTML = "Enter Password";
+         }
+         else if ((mobile.trim()).length != 10 ){
+            document.getElementById("mmessage").innerHTML = "Enter 10 digit mobile number";
+         }
+         else if ((country.trim()).length < 1 ){
+             document.getElementById("cmessage").innerHTML = "Select Country";
+         }
+         else if ((state.trim()).length < 1 ){
+             document.getElementById("smessage").innerHTML = "Select State";
+         }
+         else if ((address.trim()).length < 1 ){
+             document.getElementById("amessage").innerHTML = "Enter Address";
+         }
+         else{
+            $.ajax({
+                type: "GET",
+                url: "{% url 'client_register' %}" ,
+                data:{"username":username, "email":email,"password":password, "mobile":mobile,
+                        "country":country, "state":state, "address":address, "userid":{{user.id}}},
+                });
+             $('#step2').show();
+             $('#step1').hide();
+             $('#step3').hide();
+
+         }
+
+      }
+   </script>
+
+
+
+      <script>
+        // date time picker js start// 
+        $(function () {
+          $('#startdate').datepicker({
+            format: "dd-mm-yyyy",
+            autoclose: true
+          }); 
+        })
+         // date time picker js end// 
+      </script>  
+
+
+      <script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'The information was successfully updated.'
+      })
+    });
+    $('.swalDefaultInfo').click(function() {
+      Toast.fire({
+        icon: 'info',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultError').click(function() {
+      Toast.fire({
+        icon: 'error',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultWarning').click(function() {
+      Toast.fire({
+        icon: 'warning',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultQuestion').click(function() {
+      Toast.fire({
+        icon: 'question',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+
+
+
+
+$('.delete-msg').click(function() {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+});
+
+  });
+</script>
+
+<script type="text/javascript">
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /execute a function when someone writes in the text field:/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /close any already open lists of autocompleted values/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /create a DIV element that will contain the items (values):/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /append the DIV element as a child of the autocomplete container:/
+      this.parentNode.appendChild(a);
+      /for each item in the array.../
+      for (i = 0; i < arr.length; i++) {
+        /check if the item starts with the same letters as the text field value:/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /create a DIV element for each matching element:/
+          b = document.createElement("DIV");
+          /make the matching letters bold:/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /insert a input field that will hold the current array item's value:/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /execute a function when someone clicks on the item value (DIV element):/
+          b.addEventListener("click", function(e) {
+              /insert the value for the autocomplete text field:/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /execute a function presses a key on the keyboard:/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /and and make the current item more visible:/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /and and make the current item more visible:/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /If the ENTER key is pressed, prevent the form from being submitted,/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /and simulate a click on the "active" item:/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /a function to classify an item as "active":/
+    if (!x) return false;
+    /start by removing the "active" class on all items:/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /add class "autocomplete-active":/
+    // x[currentFocus].classList.add("autocomplete-active");
+  }
+  // function removeActive(x) {
+  //   /a function to remove the "active" class from all autocomplete items:/
+  //   for (var i = 0; i < x.length; i++) {
+  //     x[i].classList.remove("autocomplete-active");
+  //   }
+  // }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /execute a function when someone clicks in the document:/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/An array containing all the country names in the world:/
+var courses = ["Charde Marshall", "Brielle Williamson","Argentina", "Aldous Drissell", "Phaedra Dankov","Abhilasha Agarwal", "Aarav Khatri", "Arundhati Ahuja","Deepika Laghari", "Bhavna Patel", "Bhavya Reddy","Chatura Anthony", "Chetan Acharya"];
+
+/initiate the autocomplete function on the "username" element, and pass along the countries array as possible autocomplete values:/
+autocomplete(document.getElementById("username"), courses);
+</script>
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  })
+  console.log({{user.id}})
+</script>
+<script>
+  function product(val)
+      {
+          var t = val
+          {% for client in message %}
+                x = '{{client.name}}';
+                if (x == t){
+                    document.getElementById("price").value="{{client.price}}";
+                    document.getElementById("duration").value="{{client.duration}}";
+                    document.getElementById("description").value="{{client.description}}";
+                }
+          {% endfor %}
+      }
+  function expirydate()
+      {
+        var d = document.getElementById("startdate").value;
+        var e = document.getElementById("duration").value;
+        $.ajax({
+          type: "GET",
+          url: "{% url 'product_validity' %}" ,
+          data:{"startdate":d, "duration":e},
+        success: function (data ){
+            document.getElementById("expiry_date").innerHTML = data;
+        }
+        });
+      }
+
+  const tbodyEl = document.querySelector("tbody")
+  const tableEl = document.querySelector("table")
+  function add_product(){
+    let productname = document.getElementById("pname").value;
+    let productdes = document.getElementById("description").value;
+    let productprice = document.getElementById("price").value;
+    let productdays = document.getElementById("duration").value;
+    let productadays = document.getElementById("startdate").value;
+    if ((productname.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "Select Product";
+         }
+         else if ((productprice.trim()).length < 1 ){
+             document.getElementById("pmessagep").innerHTML = "Enter Price";
+         }
+         else if ((productdays.trim()).length < 1 ){
+             document.getElementById("pmessaged").innerHTML = "Enter Duration";
+         }
+         else if ((productadays.trim()).length < 1 ){
+             document.getElementById("pmessagea").innerHTML = "Select Active Date";
+         }
+         else if ((payment.trim()).length < 1 ){
+             document.getElementById("pmessagepa").innerHTML = "Select Payment";
+         }
+         else if ((productdes.trim()).length < 1 ){
+             document.getElementById("pmessagede").innerHTML = "Enter Description";
+         }
+
+    else{
+      tbodyEl.innerHTML += `
+        <tr>
+          <td id="proname">${productname}</td>
+          <td id="proprice">${productprice}</td>
+          <td id="prodays">${productdays}</td>
+          <td id="proactive">${productadays}</td>
+
+          <td>
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-sm btn-danger delete-msg">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+           </tr>
+          <tr class="total-calculate">
+            <td colspan="6">Total Amount<small>( Taxes included ) = </small><span>${productprice}</span></td>
+          </tr>
+        `;
+        clearForm()
+        document.getElementById("button2").disabled = false;
+      }
+  }
+  function clearForm() {
+  document.getElementById("pname").value="";
+  document.getElementById("description").value="";
+  document.getElementById("price").value="";
+  document.getElementById("duration").value="";
+  document.getElementById("startdate").value="";
+
+  }
+  function showstep3() {
+     $('#step2').hide();
+     $('#step3').show();
+     $('#step1').hide();
+      var username = document.getElementById("username").value;
+         var proname = document.getElementById("proname").innerHTML;
+         var proprice = document.getElementById("proprice").innerHTML;
+         var prodays = document.getElementById("prodays").innerHTML;
+         var proactive = document.getElementById("proactive").innerHTML;
+         var expiry_date = document.getElementById("expiry_date").innerHTML;
+         var payment = document.getElementById("payment").value;
+         $.ajax({
+              type: "GET",
+              url: "{% url 'client_buy_product' %}" ,
+              data:{"username":username, "proname":proname,"proprice":proprice, "prodays":prodays,
+                      "proactive":proactive, "expiry_date":expiry_date, "payment":payment,  "userid":{{user.id}}},
+              });
+    }
+</script>
+
+
+

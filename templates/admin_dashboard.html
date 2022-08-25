@@ -1,0 +1,127 @@
+{% include 'admin_header.html' %}
+
+            <div class="col-12 page-heading">
+               <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                  <h4 class="mb-sm-0">Dashboard</h4>
+                  <div class="page-title-right">
+                     <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item">
+                           <a href="#">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">Home Page</li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            </div>
+            <div class="superadmin-dashboard">
+               <div class="row">
+                  <div class="dashboard-home">
+                     <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+                        <div class="dashhome-card">
+                           <i class="fal fa-users-medical"></i>
+                           <h4>Total Clients <span id="mes"></span></h4>
+                        </div>
+                     </div>
+                     <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+                        <div class="dashrevnu-card">
+                           <i class="far fa-user-friends"></i>
+                           <h4>Total Customers <span id="cus"></span></h4>
+                        </div>
+                     </div>
+                     <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+                        <div class="dashsales-card">
+                           <i class="far fa-mail-bulk"></i>
+                           <h4>Pending Emails <span>13,000</span></h4>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="salesadmin-list">
+                     <div class="sales-table col-lg-8 col-sm-12 col-12 float-left">
+                        <div class="sales-list table-responsive">
+                           <h4>Moniter Sales List </h4>
+                           <table class="table" id="sales-table">
+                              <thead>
+                                 <tr>
+                                    <th>Total</th>
+                                    <th>Active Clients</th>
+                                    <th>Expried Clients</th>
+                                    <th>Enquiry Email</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>Month</td>
+                                    <td>2105</td>
+                                    <td>545</td>
+                                    <td>947</td>
+                                 </tr>
+                                 <tr>
+                                    <td>Quarterly</td>
+                                    <td>62,105</td>
+                                    <td>8,545</td>
+                                    <td>10,947</td>
+                                 </tr>
+                                 <tr>
+                                    <td>Yearly</td>
+                                    <td>86,2105</td>
+                                    <td>98,545</td>
+                                    <td>71,0947</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                     <div class="newadmin-list col-lg-4 col-sm-12 col-12 float-left">
+                        <div class="org-admin-list">
+                           <div class="conf-heading-title">
+                              <div class="wc-smll-logo">
+                                 <img src="../static/assets/images/mail.png">
+                              </div>
+                           </div>
+                           <h4 class="title-conf-orgnt">Total Clients Details </h4>
+                           <p>Email marketing is a form of marketing that can make the customers on your email list aware of new products, discounts, and other services</p>
+                           <div class="sub-admin-link">
+                              <a href="admin_client" class="admin-bttn" target="_blank" title=""><i class="far fa-plus"></i>Check Client List</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- sales table -->  
+               </div>
+            </div>
+            <!-- superadmin-dashboard -->
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+   function test(){
+      console.log("HIII")
+      var count = 0
+      {% for client in messages %}
+      {% if client.admin_id == user.id %}
+         count++;
+         document.getElementById("mes").innerHTML = count
+      {% else %}
+         document.getElementById("mes").innerHTML = "No Data"
+      {% endif %}
+      {% endfor %}
+
+      var counts = 0
+      {% for client in messages %}
+      {% if client.admin_id == user.id %}
+         {% for customer in message %}
+         {% if client.id == customer.user_id %}
+         counts++;
+         console.log("counts",counts)
+         document.getElementById("cus").innerHTML = counts
+         {% endif %}
+         {% endfor %}
+      {% endif %}
+      {% endfor %}
+   }
+   window.onload = test;
+</script>
+{% include 'admin_footer.html' %}

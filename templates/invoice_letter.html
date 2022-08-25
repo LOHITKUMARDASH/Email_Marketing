@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+  <head>
+    <meta charset="utf-8" />
+    <title>Tax Invoice</title>
+    <link rel="shortcut icon" type="image/png" href="./favicon.png" />
+    
+  </head>
+  <body style="font-family: Arial, Helvetica, sans-serif;">
+    <section class="main-pd-wrapper" style="width: 20cm; margin: auto;box-shadow: 0 0 10px #ddd;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;">
+        {% for setting in message %} {% for invoice in messages %}
+        {% if setting.user_id == user.id %}
+         <table style="width: 100%; table-layout: fixed;border-collapse: collapse;">
+          <tr>
+            <td style="width: 30%">
+              <img src="https://www.secuodsoft.com/images/1-black.png" style="width:100%">
+            </td>
+            <td style="text-align: right;line-height: 1.5;color: #323232;width: 70%;font-size: 13px;vertical-align: middle;">
+                <h4 style="margin-top: 5px; margin-bottom: 5px">
+                    {{setting.CompanyName}}
+                </h4>
+                <p style="font-size: 13px; margin: 0px;">{{setting.Address}}</p>
+                 <p style="font-size: 13px; margin: 0px;">
+                  <b>GSTIN-</b>{{setting.GSTIN}}, <b>PAN No:</b>{{setting.PanNo}}<br/>
+                  <b>Tel:</b>{{setting.ContactNumber}}, <b>Website:</b>{{setting.Website}}</p>
+            </td>
+          </tr>
+        </table>
+
+      <table align="center" style="width: 100%; border: 1px solid #111;border-collapse: collapse;" cellpadding="0">
+         <tbody style="font-size: 13px;">
+            <tr align="center">
+               <td  colspan="5" style="border-bottom: 1px solid #111;vertical-align: middle;">
+                  <h2>{{setting.Heading}}</h2>
+               </td>
+            </tr>
+            <tr>
+               <td rowspan="6" style="width:60%; border-right: 1px solid #111;padding: 5px;vertical-align: middle;">
+                  <b><big>{{setting.Client}}</big></b>
+                  <p style="font-size:13px!important;padding: 0;margin: 0;"><big><b>{{invoice.customer}}</b></big><br>
+                     <b>Address:</b> Kharvela Nagar, Bhubaneswar<br>
+                     <b>State:</b> Odisha<br> 
+                     <b>GSTIN:</b> NA<br>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <td style="width:18%; border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;"><b>Invoice No</b></td>
+               <td style="width:5%; border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">:</td>
+               <td style="width:18%; border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">20220{{invoice.id}}</td>
+            </tr>
+            <tr>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;"><b>Invoice Date</b></td>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">:</td>
+                {% if Date %}
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">{{Date}}</td>
+            </tr>
+            <tr>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;"><b>Status</b></td>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">:</td>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;"><b style="color:green;">Paid</b></td>
+            </tr>
+            <tr>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;"><b>Paid Date</b></td>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">:</td>
+               <td style="border-bottom: 1px solid #000;vertical-align: middle;padding: 5px;">{{Date}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+               <td style="vertical-align: middle;padding: 5px;"><b>Payment Method</b></td>
+               <td style="vertical-align: middle;padding: 5px;">:</td>
+               <td style="vertical-align: middle;padding: 5px;">{{invoice.payment}}</td>
+            </tr>
+         </tbody>
+      </table>
+
+      <table align="center" style="width: 100%;margin-top:20px;border-collapse: collapse;" cellspacing="0">
+
+        <thead style="border: 1px solid #111;font-size: 13px;">
+          <tr>
+            <th style="border: 1px solid #111;font-size: 13px;">#</th>
+            <th style="border: 1px solid #111;font-size: 13px;">Name of the Products</th>
+            <th style="border: 1px solid #111;font-size: 13px;">Duration</th>
+            <th style="border: 1px solid #111;padding: 5px; font-size: 13px;">Start Date</th>
+            <th style="border: 1px solid #111;padding: 5px; font-size: 13px;">End Date</th>
+            <th style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{setting.TotalAmount}}</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+          <tr>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">01</td>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{invoice.productName}}</td>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{invoice.duration}} days</td>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{invoice.active_date}}</td>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{invoice.expiry_date}}</td>
+            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{setting.Currency}} {{invoice.price}}</td>
+          </tr>
+
+<!--          <tr>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">02</td>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">5 Lakhs Mail</td>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">60 days</td>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">09.05.2022</td>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">04.07.2022</td>-->
+<!--            <td style="border: 1px solid #111;padding: 5px; font-size: 13px;">Rs.10,000</td>-->
+<!--          </tr>-->
+          <tr>
+            <th colspan="5" style="border: 1px solid #111;padding: 5px; font-size: 14px;">{{setting.SubTotal}}:</th>
+            <th style="border: 1px solid #111;padding: 5px; font-size: 13px;">{{setting.Currency}} {{invoice.price}}</th>
+          </tr>
+          <tr>
+            <td colspan="6" style="border: 1px solid #111;padding: 5px; font-size: 14px; text-align: left;"><b>Amount Total In Words:</b>
+            <span>twenty four thousand</span>  
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+
+     <table align="center" style="width: 100%; border: 1px solid #111;margin-top:20px;border-collapse: collapse;">
+         <tbody style="border: 1px solid #111;padding: 5px; font-size: 14px;">
+            <tr>
+               <td rowspan="3" style="width:30%; border-right: 1px solid #111;padding: 10px;font-size: 13px;">
+                  <b style="text-align:right;padding: 0px;font-size: 15px;">{{setting.TermsandConditions}}:</b><br><br>
+                  {{setting.TermsandConditionsDetails}}
+                  <hr/>
+                  <span>{{setting.ThankyouMassage}}</span>
+               </td>
+               
+              </tr>
+              <tr>
+               <td style="width:18%;border-bottom: 1px solid #111; padding: 10px;line-height: 1.5;">Total Amount Include Tax :<b><br><big>{{setting.Currency}} {{invoice.price}}/-</big></b></td>
+            </tr>
+            <tr style="text-align:center">
+               <td style="padding: 8px;"><small style="font-size:10px">Certified that the particular given above are true and correct</small><br><b style="font-size:12px;">For, {{setting.CompanyName}}</b>
+                <br/><img src="{% static 'assets/images/company-stamp.png' %}" style="width:20%">
+               </td>
+            </tr>
+
+
+            <tr>
+               <td colspan="2"  style="text-align: center;border-top: 1px solid #111;padding: 3px;">
+                  {{setting.FooterNotes}}
+               </td>
+               
+              </tr>
+         </tbody>
+      </table>
+
+      <table  align="center" style="width: 100%; border: 1px solid #111;margin-top:20px">
+         <tbody style="border: 1px solid #111;padding: 10px; font-size: 13px;">
+            <tr>
+               <td style="font-size:13px!important;padding: 10px;line-height: 1.6;"><b>Bank Name: </b>{{setting.BankName}}
+                  <br/>
+                  <b> Account Type: </b> {{setting.AccountType}}
+                  <br/>
+                  <b> Branch Name: </b>{{setting.BranchName}}
+               </td>
+               <td style="font-size:13px!important;line-height: 1.6;">
+                  <b>Account Name: </b>{{setting.AccountName}}<br><b> Account Number: </b>{{setting.BankAccountNo}}<br><b>IFSC Code: </b>{{setting.IFSCNo}}</td>
+            </tr>
+         {% endif %}
+         {% endfor %}
+         {% endfor %}
+         </tbody>
+      </table>
+
+      <div class="noPrint" style="width:20%; margin:1em auto;">
+        <a href="javascript:print()" style="background: #011947; color: #fff; padding: 5px 10px; border:none; outline: none; font-size: 14px; text-decoration: none;">Print</a>
+<!--        <button type="button" style="background: #011947; color: #fff; padding: 5px 10px; border:none; outline: none;">Send Email</button>-->
+      </div>
+      <style>
+        @media print {
+         .noPrint{
+         display:none;
+         }
+}
+      </style>
+     
+    </section>
+  </body>
+<Script>
+      function sett(){
+         console.log("HIIII")
+      }
+</Script>
+
+</html>

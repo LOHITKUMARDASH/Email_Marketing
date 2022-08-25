@@ -1,0 +1,97 @@
+
+{% include 'header.html' %}
+
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Payment Details</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Payment Details</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card product-details card-bgchange">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Payment Details</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="paymentdetail">
+              <thead>
+                <tr>
+                  <th style="display:none">#</th>
+                  <th>Invoice</th>
+                  <th>Name</th>
+                  <th>Total Amount</th>
+                  <th>Payment Method</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for product in message %}
+                  {% if product.user_id == user.id %}
+                <tr>
+                  <td style="display:none">{{ forloop.counter }}</td>
+                  <td>20220{{ product.id }}</td>
+                  <td>{{ product.customer }}</td>
+                  <td>₹ {{ product.price }}</td>
+                  <td>{{ product.payment }}</td>
+                  <td>
+                    <span class="badge badge-soft-success text-uppercase"> Paid</span>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                       <a href="/invoice_letter/{{product.id}}" class="btn btn-sm btn-warning" onclick="test({{ product.id }})" target="_blank"><i class="fa fa-eye"></i></a>
+                    </div>
+                  </td>
+                </tr>
+<!--                <tr>-->
+<!--                  <td>2</td>-->
+<!--                  <td>202202</td>-->
+<!--                  <td>Phaedra Dankov</td>-->
+<!--                  <td>250,000</td>-->
+<!--                  <td>Debit Card</td>-->
+<!--                  <td>-->
+<!--                    <span class="badge badge-soft-success text-uppercase"> Paid</span>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                       <a href="../invoice.html" class="btn btn-sm btn-warning" target="_blank"><i class="fa fa-eye"></i></a>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+                    {% endif %}
+                  {%endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#paymentdetail").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // datatable init. start//
+      </script>
+    <script>
+        function test(val){
+            var t = val
+            console.log(t)
+        }
+    </script>
+
+      

@@ -1,0 +1,207 @@
+{% include 'admin_header.html' %}
+
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Setting</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Setting</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="superadmin-detable">
+          <div class="viewadmin-detable">
+            <!--- form start --->
+            <form action="/settingss/{{user.id}}" method="post" class="card setting" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card-body company-setting">
+                <div class="card-header align-items-center d-flex">
+                  <h4 class="card-title mb-0 flex-grow-1">Site Configuration</h4>
+                </div>
+                <div class="row">
+                  <div class="form-card edit-contentdetal">
+                    <div class="row settingcont">
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Company Name</label>
+                            <input type="text" class="form-control is-valid" name="companyname" placeholder="">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Contact Number</label>
+                            <input type="text" class="form-control" name="contactnumber" placeholder="">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>GSTIN</label>
+                            <input type="text" class="form-control" placeholder="" name="gstin">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Pan No</label>
+                            <input type="text" class="form-control" placeholder="" name="panno">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Website</label>
+                            <input type="text" class="form-control" placeholder="" name="website">
+                        </div>
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Currency</label>
+                            <input type="text" class="form-control" placeholder="" name="currency">
+                        </div>
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Company Logo</label>
+                            <input type="file" class="form-control-file" placeholder="" name="companylogo">
+                        </div>
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>User Name</label>
+                            <input type="text" class="form-control" value="{{ user.user_name }}" placeholder="" name="username" readonly>
+                        </div>
+
+<!--                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">-->
+<!--                          <label>Password</label>-->
+<!--                            <input type="text" class="form-control" placeholder="" value="{{ user.password }}" name="password" readonly>-->
+<!--                        </div>-->
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Address</label>
+                          <textarea class="form-control" name="address" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bank Details -->
+              <div class="card-body company-setting">
+                <div class="card-header align-items-center d-flex">
+                  <h4 class="card-title mb-0 flex-grow-1">Bank Details</h4>
+                </div>
+                <div class="row">
+                  <div class="form-card edit-contentdetal">
+                    <div class="row settingcont">
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Bank Name</label>
+                            <input type="text" class="form-control is-valid" placeholder="" name="bankname">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Branch Name</label>
+                            <input type="text" class="form-control" placeholder="" name="branchname">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Account Name</label>
+                            <input type="text" class="form-control" placeholder="" name="accountname">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Account Type</label>
+                            <input type="text" class="form-control" placeholder="" name="accounttype">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Bank Account No</label>
+                            <input type="text" class="form-control" placeholder="" name="bankaccountno">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>IFSC No</label>
+                            <input type="text" class="form-control" placeholder="" name="ifscno">
+                        </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+               <!-- Invoice Heading Details -->
+              <div class="card-body company-setting">
+                <div class="card-header align-items-center d-flex">
+                  <h4 class="card-title mb-0 flex-grow-1">Invoice Heading Details</h4>
+                </div>
+                <div class="row">
+                  <div class="form-card edit-contentdetal">
+                    <div class="row settingcont">
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Heading</label>
+                            <input type="text" class="form-control is-valid" placeholder="Tax Invoice" name="heading">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Client</label>
+                            <input type="text" class="form-control" placeholder="Bill To" name="client">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Price</label>
+                            <input type="text" class="form-control" placeholder="Rate" name="price">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>SubTotal</label>
+                            <input type="text" class="form-control" placeholder="SubTotal" name="subtotal">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Total Amount</label>
+                            <input type="text" class="form-control" placeholder="Total Amount" name="totalamount">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Thankyou Massage</label>
+                            <input type="text" class="form-control" placeholder="This is computer generated invoice" name="thankyoumessage">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Footer Notes</label>
+                            <input type="text" class="form-control" placeholder="Copyright @ 2022" name="footernotes">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Upload Your Company Stamp</label>
+                            <input type="File" class="form-control-file" name="stamp">
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Terms and Conditions</label>
+                            <input type="text" class="form-control" placeholder="Terms and Conditions" name="termsandconditions">
+                        </div>
+                        <div class="form-group col-lg-8 col-sm-6 col-12 float-left">
+                          <label>Terms and Conditions Details</label>
+                          <textarea class="form-control" name="termsandconditionsdetails" rows="3" placeholder="Enter your terms and condtions details"></textarea>
+                        </div>
+                      <center><button type="submit" class="btn btn-primary bttn-editcode swalDefaultSuccess">Save<i class="fal fa-arrow-to-right"></i></button></center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!--- form end --->
+          </div>
+          <!--- View Admin Details --->
+        </div>
+        <!-- superadmin-detable end -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% include 'admin_footer.html' %}
+
+<script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Setting Added Successfully.'
+      })
+    });
+</script>

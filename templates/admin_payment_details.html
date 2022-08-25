@@ -1,0 +1,145 @@
+
+{% include 'admin_header.html' %}
+
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Payment Details</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Payment Details</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card product-details card-bgchange">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Payment Details</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="paymentdetail">
+              <thead>
+                <tr>
+                  <th style="display:none">#</th>
+                  <th>Invoice</th>
+                  <th>Name</th>
+                  <th>Total Amount</th>
+                  <th>Payment Method</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for product in message %}
+                    {% if product.user_id == user.id %}
+                <tr>
+                  <td style="display:none">{{ forloop.counter }}</td>
+                  <td>20220{{ product.id }}</td>
+                  <td>{{ product.customer }}</td>
+                  <td>₹ {{ product.price }}</td>
+                  <td>{{ product.payment }}</td>
+                  <td>
+                    <span class="badge badge-soft-success text-uppercase"> Paid</span>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <a href="/invoice_letter/{{product.id}}" target="_blank" class="btn btn-sm btn-warning">
+                            <i class="fa fa-eye"></i> </a>
+                    </div>
+                  </td>
+                </tr>
+<!--                <tr>-->
+<!--                  <td>2</td>-->
+<!--                  <td>202202</td>-->
+<!--                  <td>Phaedra Dankov</td>-->
+<!--                  <td>250,000</td>-->
+<!--                  <td>Debit Card</td>-->
+<!--                  <td>-->
+<!--                    <span class="badge badge-soft-success text-uppercase"> Paid</span>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <a href="invoice_letter" target="_blank" class="btn btn-sm btn-warning">-->
+<!--                            <i class="fa fa-eye"></i> </a>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+                  {% endif %}
+                  {%endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="edit">
+  <div class="modal-dialog edit-contentdetal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Product Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <form action="">
+            <div class="form-group">
+              <label for="uname">Product Name </label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-shopping-bag"></i>
+                </span>
+                <input type="text" class="form-control is-valid" id="uname" placeholder="Enter username" name="uname" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="uemail">Product Price</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-money-bill-alt"></i>
+                </span>
+                <input type="text" class="form-control is-valid" id="uemail" placeholder="Enter username" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ucontact">Product Duration</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-hourglass-half"></i>
+                </span>
+                <input type="text" class="form-control is-valid" id="ucontact" placeholder="Enter username" name="uname" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="uaddress">Product Description</label>
+              <textarea class="form-control" id="uaddress" name="address" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary bttn-editcode">Save <i class="fal fa-arrow-to-right"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'admin_footer.html' %}
+
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#paymentdetail").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // datatable init. start//
+      </script>
+
+      

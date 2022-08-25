@@ -1,0 +1,207 @@
+
+{% include 'header.html' %}
+
+           <div class="col-12 page-heading">
+             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+               <h4 class="mb-sm-0">Manage Template</h4>
+               <div class="page-title-right">
+                 <ol class="breadcrumb m-0">
+                   <li class="breadcrumb-item">
+                     <a href="#">Dashboard</a>
+                   </li>
+                   <li class="breadcrumb-item active">Manage Template</li>
+                 </ol>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="card product-details card-bgchange">
+           <div class="card-header align-items-center d-flex">
+             <h4 class="card-title mb-0 flex-grow-1">Manage Template Details</h4>
+             <button type="button" data-toggle="modal" data-target="#addtemplate" class="btn btn-primary bttn-editcode ">
+               <a href="#">Add Template</a>
+               <i class="fal fa-plus"></i>
+             </button>
+           </div>
+           <div class="card-body">
+             <table class="table table-hover dt-responsive" id="templateList">
+               <thead>
+                 <tr>
+                   <th>#</th>
+                   <th>Template Name</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   {% for client in message %}
+                   <td>{{ forloop.counter }}</td>
+                   <td>{{ client.templates }}</td>
+                   <td>
+                     <div class="btn-group btn-group-sm">
+                       <a href="/view_template/{{client.id}}"><button type="button" class="btn btn-sm btn-warning" id="template" >
+                         <i class="fal fa-eye"></i>
+                       </button></a>
+<!--                       <button type="button"  class="btn btn-sm btn-danger delete-msg" onclick="temp({{client.id}})">-->
+<!--                         <i class="fa fa-trash"></i>-->
+<!--                       </button>-->
+                     </div>
+                   </td>
+                 </tr>
+                 {% endfor %}
+<!--                 <tr>-->
+<!--                   <td>2</td>-->
+<!--                   <td>Secuodsoft Technologies Private Limited</td>-->
+<!--                   <td>-->
+<!--                     <div class="btn-group btn-group-sm">-->
+<!--                       <button type="button" class="btn btn-sm btn-warning">-->
+<!--                         <i class="fal fa-eye"></i>-->
+<!--                       </button>-->
+<!--                       <button type="button" class="btn btn-sm btn-danger delete-msg">-->
+<!--                         <i class="fa fa-trash"></i>-->
+<!--                       </button>-->
+<!--                     </div>-->
+<!--                   </td>-->
+<!--                 </tr>-->
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="modal" id="addtemplate">
+   <div class="modal-dialog edit-contentdetal">
+     <div class="modal-content template-edit">
+       <!-- Modal Header -->
+       <div class="modal-header">
+         <h4 class="modal-title">Template</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <!-- Modal body -->
+       <div class="modal-body">
+         <form action="/templates" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <div class="form-group">
+             <label>Template Name </label>
+             <input type="text" class="form-control is-valid" id="name" placeholder="Enter Name" name="name" required>
+           </div>
+           <div class="form-group">
+             <label>Upload Template</label>
+             <input type="File" class="form-control-file" id="file" name="file" required>
+           </div>
+           <button type="submit" class="btn btn-primary bttn-editcode">Save <i class="fal fa-arrow-to-right"></i>
+           </button>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+
+  {% include 'footer.html' %}
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#templateList").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // datatable init. start//
+      </script>  
+
+      
+
+      <script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'The information was successfully updated.'
+      })
+    });
+    $('.swalDefaultInfo').click(function() {
+      Toast.fire({
+        icon: 'info',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultError').click(function() {
+      Toast.fire({
+        icon: 'error',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultWarning').click(function() {
+      Toast.fire({
+        icon: 'warning',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultQuestion').click(function() {
+      Toast.fire({
+        icon: 'question',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+
+
+$('.delete-msg').click(function() {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+});
+
+  });
+</script>
+<script>
+  function temp(val)
+    {
+      var t = val
+      console.log("HOOIO"+t)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              console.log("Delete")
+              $.ajax({
+                type: "GET",
+                url: "{% url 'temp_delete' %}" ,
+                data:{"value":t},
+                });
+              window.location.replace('/templates');
+            }
+          });
+       }
+</script>
+
+</html>

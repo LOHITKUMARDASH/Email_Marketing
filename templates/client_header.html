@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>secuodsoft | Email Marketing</title>
+      <!-- App favicon -->
+      <link rel="shortcut icon" href="assets/images/favicon.ico">
+      <!-- font awsome -->
+      <link rel='stylesheet' href='https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="../static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../static/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <script src="../static/assets/plugins/jquery/jquery-3.6.0.min.js"></script>
+
+      <link rel="stylesheet" href="../static/assets/plugins/datepicker/bootstrap-datepicker.min.css">
+
+
+      <!-- Sweet ALert css -->
+      <link rel="stylesheet" href="../static/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+      <link href="../static/assets/css/style.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="../static/assets/css/sidemenu.css">
+
+      <!-- Select2 -->
+      <link rel="stylesheet" href="../static/assets/plugins/select2/css/select2.min.css">
+      <link rel="stylesheet" href="../static/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+      
+   </head>
+   <body>
+   <div class="wrapper d-flex align-items-stretch">
+   <nav id="sidebar" class="active">
+    <div class="user-panel">
+      <div class="pull-left admin-logo">
+        <img src="../static/assets/images/SECUODSOFT-LOGO.png" alt="" height="17">
+      </div>
+      <div class="pull-left info">
+        <h6>Email Marketing <span>Software</span>
+        </h6>
+      </div>
+    </div>
+    <div class="header-topmenu">
+      <button type="button" id="menusidebar" class="btn btn-primary">
+        <i class="fal fa-times"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <ul class="list-unstyled components mb-5">
+      <li class="active">
+        <a href="{% url 'client_dashboard' %}">
+          <i class="fa fa-home"></i>
+          <span class="mobile-disable">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'client_productlist' %}">
+          <i class="far fa-mail-bulk"></i>
+          <span class="mobile-disable"> Product List </span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'customerlist' %}">
+          <i class="far fa-credit-card-front"></i>
+          <span class="mobile-disable"> Customer List </span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'client_managegroup' %}">
+          <i class="far fa-user-plus"></i>
+          <span class="mobile-disable"> Manage Group </span>
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'client_template' %}">
+          <i class="far fa-layer-group"></i>
+          <span class="mobile-disable">Manage Template </span>
+        </a>
+      </li>
+    </ul>
+    <div class="dropdown ms-sm-3 header-item topbar-user">
+      <span class="user-profileadmin">
+        <img class="rounded-circle header-profile-user" src="../static/assets/images/avatar-1.jpg" alt="Super Admin">
+        <span class="text-start ms-xl-2">
+          <span class="d-xl-inline-block ms-1 fw-medium user-name-text">{{user.user_name}}</span>
+          <span class="d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Client</span>
+        </span>
+      </span>
+    </div>
+  </nav>
+  <!-- Page Content  -->
+  <div id="content" class="main-content">
+    <div class="page-content">
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <div class="nav-header-top col-lg-8">
+                <button type="button" id="sidebarCollapse">
+                  <i class="fa fa-bars"></i>
+                  <span class="sr-only">Toggle Menu</span>
+                </button>
+              </div>
+              <div class="profile-user" id="navbarSupportedContent">
+                <div class="topbar-head float-right">
+                  <ul>
+                    <li class="log-out">
+                      <a href="#">
+                        <i class="far fa-power-off"></i>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="dropdown ms-sm-3 header-item topbar-user">
+                    <span class="d-flex align-items-end">
+                      <img class="rounded-circle header-profile-user" src="../static/assets/images/avatar-1.jpg" alt="Super Admin">
+                      <span class="text-start ms-xl-2">
+                        <span class="d-xl-inline-block ms-1 fw-medium user-name-text">{{user.user_name}}</span>
+                        <span class="d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Client</span>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>

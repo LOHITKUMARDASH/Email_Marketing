@@ -1,0 +1,316 @@
+{% include 'header.html' %}
+          <div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Admin Details</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Admin Details</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <!-- page-heading -->
+        </div>
+        <!-- row end -->
+        <div class="card admin-details card-bgchange">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Admin Details</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="example1">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Country</th>
+                  <th>State</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for admin in message %}
+                <tr>
+                  <td class="sorting_1">{{ forloop.counter }}</td>
+                  <td>{{admin.user_name}}</td>
+                  <td>{{admin.email}}</td>
+                  <td>{{admin.mobile}}</td>
+                  <td>{{admin.country}}</td>
+                  <td>{{admin.state}}</td>
+                  <td>{{admin.Address}}</td>
+                  {% if admin.is_active %}
+                  <td><span class="badge badge-soft-success text-uppercase"> Active</span></td>
+                  {% else %}
+                  <td><span class="badge badge-soft-danger text-uppercase"> Deactive</span></td>
+                  {% endif %}
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success" onclick="admin({{admin.id}})">
+                        <i class="fal fa-edit"></i>
+                      </button>
+                      <span>
+                        <a href="/adminview/{{ admin.id }}" class="btn btn-sm btn-warning">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+<!--                <tr class="even">-->
+<!--                  <td class="sorting_1">2</td>-->
+<!--                  <td>Charde Marshall </td>-->
+<!--                  <td>adrissell0@edubl.org</td>-->
+<!--                  <td>000 0000 000</td>-->
+<!--                  <td>Edinburgh</td>-->
+<!--                  <td>Selangor</td>-->
+<!--                  <td>Menara Telekom,Jalan Pantai Baru, 59200 Kuala Lumpur</td>-->
+<!--                  <td>-->
+<!--                    <span class="badge badge-soft-danger text-uppercase"> Inactive</span>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <button type="button" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button>-->
+<!--                      <span>-->
+<!--                        <a href="/adminview" class="btn btn-sm btn-warning">-->
+<!--                          <i class="fa fa-eye"></i>-->
+<!--                        </a>-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr class="odd">-->
+<!--                  <td class="sorting_1">3</td>-->
+<!--                  <td>Brielle Williamson </td>-->
+<!--                  <td>adrissell0@edubl.org</td>-->
+<!--                  <td>000 0000 000</td>-->
+<!--                  <td>San Francisco </td>-->
+<!--                  <td>Selangor</td>-->
+<!--                  <td>Menara Telekom,Jalan Pantai Baru, 59200 Kuala Lumpur</td>-->
+<!--                  <td>-->
+<!--                    <span class="badge badge-soft-success text-uppercase"> Active</span>-->
+<!--                  </td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <button type="button" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button>-->
+<!--                      <span>-->
+<!--                        <a href="/adminview" class="btn btn-sm btn-warning">-->
+<!--                          <i class="fa fa-eye"></i>-->
+<!--                        </a>-->
+<!--                      </span>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- admin-details end -->
+      </div>
+    </div>
+    <!-- page-content end -->
+  </div>
+  <!-- main-content end -->
+</div>
+
+<div class="modal adminedit-modal" id="edit">
+  <div class="modal-dialog edit-contentdetal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Admin Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+
+          <form action="/update_admin" method="post">
+            {% csrf_token %}
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Admin Name </label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-user-alt"></i>
+                </span>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter username">
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Email Id/User Name</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-envelope-open-text"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email">
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Mobile Number</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-phone-alt"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Contact Number" id="mobile" name="mobile">
+              </div>
+            </div>
+            <input id="idname" name="idname" style="display:none">
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Country</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-globe-asia"></i>
+                </span>
+                <select name="country" class="form-control selectpicker" id="country">
+                  <option value="">Select your Country</option>
+                  <option>India</option>
+                  <option>USA</option>
+                  <option>Philippines</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>State</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-map-marker-alt"></i>
+                </span>
+                <select name="state" class="form-control selectpicker" id="state">
+                  <option value="">Select your State</option>
+                  <option>Odisha</option>
+                  <option>New Delhi</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Status</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-user-edit"></i>
+                </span>
+                <select name="status" class="form-control selectpicker" id="status">
+                  <option value="">Active</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group col-lg-12 col-sm-12 col-12 float-left">
+              <label>Address</label>
+              <textarea class="form-control" name="address" rows="3" id="address"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary bttn-editcode swalDefaultSuccess">Update <i class="fal fa-arrow-to-right"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript">
+  // datatable init. start//
+  $(function () {
+  $("#example1").DataTable({
+  "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+  })
+  });
+  // datatable init. start//
+</script>
+
+<!-- sweet alert js -->
+<script>
+  $(function() {
+  var Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+  });
+
+  $('.swalDefaultSuccess').click(function() {
+  Toast.fire({
+  icon: 'success',
+  title: ' The information was successfully updated.'
+  })
+  });
+  $('.swalDefaultInfo').click(function() {
+  Toast.fire({
+  icon: 'info',
+  title: 'Admin information successfully updated.'
+  })
+  });
+  $('.swalDefaultError').click(function() {
+  Toast.fire({
+  icon: 'error',
+  title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  })
+  });
+  $('.swalDefaultWarning').click(function() {
+  Toast.fire({
+  icon: 'warning',
+  title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  })
+  });
+  $('.swalDefaultQuestion').click(function() {
+  Toast.fire({
+  icon: 'question',
+  title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  })
+  });
+
+
+  $('.delete-msg').click(function() {
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+  if (result.isConfirmed) {
+  // Swal.fire(
+  //   'Deleted!',
+  //   'Your file has been deleted.',
+  //   'success'
+  // )
+  }
+  })
+  });
+  });
+</script>
+<script>
+  function admin(val)
+      {
+        var t = val
+        {% for client in message %}
+                x = '{{client.id}}';
+                if (x == t){
+                    document.getElementById("name").value="{{client.user_name}}";
+                    document.getElementById("email").value="{{client.email}}";
+                    document.getElementById("mobile").value="{{client.mobile}}";
+                    document.getElementById("country").value="{{client.country}}";
+                    document.getElementById("state").value="{{client.state}}";
+                    document.getElementById("address").value="{{client.Address}}";
+                    document.getElementById("idname").value="{{client.id}}";
+                    if ("{{client.is_active}}"=="False"){
+                      document.getElementById("status").value="Inactive";
+                    }
+                }
+          {% endfor %}
+      }
+</script>

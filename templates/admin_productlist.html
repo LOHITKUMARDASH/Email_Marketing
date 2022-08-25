@@ -1,0 +1,438 @@
+
+{% include 'admin_header.html' %}
+
+<div class="col-12 page-heading">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Product List</h4>
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                  </li>
+                  <li class="breadcrumb-item active">Purchase Product List</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card product-details card-bgchange">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Product List</h4>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="productList">
+              <thead>
+                <tr>
+<!--                  <th>#</th>-->
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Duration</th>
+                  <th>Start Date</th>
+                  <th>Expiry Date</th>
+                  <th>Due Qty.</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                   {% for invoice in message %}
+                      {% if invoice.customer == user.user_name %}
+<!--                  <td>{{ forloop.counter }}</td>-->
+                  <td>{{ invoice.productName }}<span class="product-decr">
+
+                      <small>{{ product.description }}</small>
+                    </span>
+                  </td>
+                  <td>₹ {{ invoice.price }}</td>
+                  <td>{{ invoice.duration }} Days</td>
+                  <td>{{ invoice.active_date }}</td>
+                  <td>{{ invoice.expiry_date }}</td>
+                  <td>{{invoice.due_quantity}}</td>
+                  <td>
+                      <span class="badge badge-soft-success text-uppercase">Active</span>
+                  </td>
+                </tr>
+
+                {% endif %}
+                {% endfor %}
+<!--                <tr>-->
+<!--                  <td>1</td>-->
+<!--                  <td>5 Lakhs<span class="product-decr">-->
+<!--                      <small>( Giving information on its origins as well as a random )</small>-->
+<!--                    </span>-->
+<!--                  </td>-->
+<!--                  <td>₹ 5,000</td>-->
+<!--                  <td>95 Days</td>-->
+<!--                  <td>10.08.2022</td>-->
+<!--                  <td>20.10.2022</td>-->
+<!--                  <td>0</td>-->
+<!--                  <td>-->
+<!--                      <span class="badge badge-soft-danger text-uppercase">Expried</span>-->
+
+<!--                  </td>-->
+<!--                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card product-details card-bgchange mt-4">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Sale Product List</h4>
+            <button type="button" data-toggle="modal" data-target="#addproduct" class="btn btn-primary bttn-editcode ">
+               <a href="#">Add New</a><i class="fal fa-plus"></i></button>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover dt-responsive" id="saleproductList">
+              <thead>
+                <tr>
+<!--                  <th>#</th>-->
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Days of Duration</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for product in messages %}
+                      {% if product.user_id == user.id %}
+                <tr>
+<!--                  <td>{{ forloop.counter }}</td>-->
+                  <td>{{ product.name }}<span class="product-decr">
+                      <small>( {{ product.description }} )</small>
+                    </span>
+                  </td>
+                  <td>₹ {{ product.price }}</td>
+                  <td>{{ product.duration }} Days</td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success" onclick="product({{product.id}})">
+                        <i class="fal fa-edit"></i>
+                      </button>
+                      <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger" onclick="test({{product.id}})">
+                        <i class="fa fa-trash" ></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              {% endif %}
+                {% endfor %}
+<!--                <tr>-->
+<!--                  <td>1</td>-->
+<!--                  <td>70k Mail<span class="product-decr">-->
+<!--                      <small>( Giving information on its origins as well as a random )</small>-->
+<!--                    </span>-->
+<!--                  </td>-->
+<!--                  <td>₹ 5,000</td>-->
+<!--                  <td>95 Days</td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>1</td>-->
+<!--                  <td>40k Mail<span class="product-decr">-->
+<!--                      <small>( Giving information on its origins as well as a random )</small>-->
+<!--                    </span>-->
+<!--                  </td>-->
+<!--                  <td>₹ 5,000</td>-->
+<!--                  <td>75 Days</td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td>1</td>-->
+<!--                  <td>1 Lakhs Mail<span class="product-decr">-->
+<!--                      <small>( Giving information on its origins as well as a random )</small>-->
+<!--                    </span>-->
+<!--                  </td>-->
+<!--                  <td>₹ 5,000</td>-->
+<!--                  <td>200 Days</td>-->
+<!--                  <td>-->
+<!--                    <div class="btn-group btn-group-sm">-->
+<!--                      <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success">-->
+<!--                        <i class="fal fa-edit"></i>-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add modal start here -->
+<div class="modal fade" id="addproduct">
+  <div class="modal-dialog edit-contentdetal saleproduct-detail">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Sale Product Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <form action="/admin_product/{{user.id}}" method="post">
+            {% csrf_token %}
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Product Name </label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-shopping-bag"></i>
+                </span>
+                <input type="text" class="form-control" name="name" placeholder="Enter Name">
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Product Quantity</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-money-bill-alt"></i>
+                </span>
+                <input type="text" class="form-control" name="quantity" placeholder="Enter Price">
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Product Price</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-money-bill-alt"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Price" name="price">
+              </div>
+            </div>
+            <div class="form-group col-lg-6 col-sm-6 col-12 float-left">
+              <label>Product Duration</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-hourglass-half"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Duration" name="duration">
+              </div>
+            </div>
+            <div class="form-group col-12 float-left">
+              <label>Product Description</label>
+              <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary bttn-editcode swalDefaultSucces">Save <i class="fal fa-arrow-to-right"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit modal start here -->
+<div class="modal fade" id="edit">
+  <div class="modal-dialog edit-contentdetal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Product Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <form action="/admin_update_product" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label>Product Name </label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-shopping-bag"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Name" name="name" id="name" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Quantity </label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-shopping-bag"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Quantity" name="quantity" id="quantity">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Product Price</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-money-bill-alt"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Price" name="price" id="price">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Product Duration</label>
+              <div class="icontext-style">
+                <span class="icon-group-addon">
+                  <i class="far fa-hourglass-half"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter Duration" name="duration" id="duration">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Product Description</label>
+              <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary bttn-editcode swalDefaultSuccess">Update <i class="fal fa-arrow-to-right"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'admin_footer.html' %}
+
+      <!-- JAVASCRIPT -->
+      <script type="text/javascript">
+         // datatable init. start//
+          $(function () {
+            $("#productList").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+         // productdatatable init. start//
+
+         $(function () {
+            $("#saleproductList").DataTable({
+              "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+            })
+          });
+
+         // saleproductdatatable init. start//
+      </script>
+
+
+
+      <script>
+  $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: ' The information was successfully updated.'
+      })
+    });
+
+    $('.swalDefaultSucces').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: ' The information was successfully saved.'
+      })
+    });
+
+    $('.swalDefaultInfo').click(function() {
+      Toast.fire({
+        icon: 'info',
+        title: 'Admin information successfully updated.'
+      })
+    });
+    $('.swalDefaultError').click(function() {
+      Toast.fire({
+        icon: 'error',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultWarning').click(function() {
+      Toast.fire({
+        icon: 'warning',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+    $('.swalDefaultQuestion').click(function() {
+      Toast.fire({
+        icon: 'question',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+    });
+
+$('.delete-msg').click(function() {
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+});
+
+  });
+</script>
+<script>
+  function product(val)
+      {
+        var t = val
+        {% for product in messages %}
+                x = '{{product.id}}';
+                if (x == t){
+                    document.getElementById("name").value="{{product.name}}";
+                    document.getElementById("quantity").value="{{product.quantity}}";
+                    document.getElementById("price").value="{{product.price}}";
+                    document.getElementById("duration").value="{{product.duration}}";
+                    document.getElementById("description").value="{{product.description}}";
+                }
+          {% endfor %}
+      }
+
+  function test(val)
+    {
+      var t = val
+      console.log(t)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                type: "GET",
+                url: "{% url 'admin_product_delete' %}" ,
+                data:{"value":t},
+                });
+              window.location.replace('/admin_productlist');
+            }
+          });
+       }
+
+</script>

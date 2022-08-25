@@ -1,0 +1,181 @@
+ @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&family=Roboto:wght@100;300;400;500&display=swap');
+
+body{ 
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+ .login-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.loginpage {
+   position: relative;
+   /*padding: 50px;*/
+   width: 65%;
+   min-height: 450px;
+   display: flex;
+   justify-content: center;
+   /*align-items: center;*/
+   background: rgba(255, 255, 255, 0.1);
+   backdrop-filter: blur(5px);
+  /* border-radius: 10px;*/
+   /*box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);*/
+}
+.welcomepage{
+    background: url(../images/login-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+    min-height: 450px;
+    height: 100%;
+    padding: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 1px 27px rgb(0 0 0 / 20%);
+  }
+ .welcomepage h2{
+    color: #fff;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 1px;
+ }
+  .welcomepage p{
+  color: #fff;
+    font-size: 17px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+ }
+ .formpage {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    padding: 3em;
+    right: -2em;
+    margin-top: 3em;
+    background: #fff;
+    box-shadow: 0 0px 15px 0px rgb(0 0 0 / 11%);
+}
+.companylogo img {
+    width: 48%;
+    background: #fafbff3d;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom: 1em;
+}
+ .formpage h2 {
+    color: #2b2c2d;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+ .formpage .inputBx {
+   position: relative;
+   width: 100%;
+   margin: 40px 0px;
+}
+ .formpage .inputBx input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #e8f0fe00;
+    padding: 15px 10px;
+    padding-left: 40px;
+    border-radius: 7px;
+    border-left: 3px solid #162ca9;
+    color: #222;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+}
+ .formpage .inputBx .password-control {
+   position: absolute;
+   top: 17px;
+   right: 10px;
+   display: inline-block;
+   width: 20px;
+   height: 20px;
+   background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+   transition: 0.5s;
+}
+ .formpage .inputBx .view {
+   background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+   transition: 0.5s;
+}
+ .formpage .inputBx .fas {
+   position: absolute;
+   top: 21px;
+   left: 13px;
+}
+ .formpage .inputBx input[type="submit"] {
+    background: #011d72;
+    color: #fffbfb;
+    max-width: 125px;
+    padding: 8px 10px;
+    box-shadow: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 1.5s;
+    margin: auto;
+    display: block;
+    text-transform: uppercase;
+}
+ .formpage .inputBx input[type="submit"]:hover {
+   background: #222327;
+   color: #fff;
+   transition: 0.5s;
+}
+ .formpage .inputBx input::placeholder {
+   color: #fff;
+}
+ .formpage .inputBx span {
+   position: absolute;
+   left: 30px;
+   padding: 15px;
+   display: inline-block;
+   color: #363333;
+   transition: 0.5s;
+   pointer-events: none;
+   transform: translateX(-20px) translateY(-30px);
+}
+ .formpage .inputBx input:focus ~ span, .form .inputBx input:valid ~ span {
+
+   font-size: 12px;
+}
+ .formpage .forgetpasword {
+   color: #363333;
+   font-size: 15px;
+   margin-top: 5px;
+   float: right;
+}
+ .formpage .forgetpasword a {
+   color: #363333;
+   text-decoration: none;
+}
+
+ .remember {
+   position: relative;
+   display: inline-block;
+   color: #363333;
+   margin-bottom: 10px;
+   cursor: pointer;
+}
+
+@media screen and (min-device-width: 300px)
+and (max-device-width: 991px) {
+  .loginpage{
+    display: block;
+  }
+  .formpage{
+    right: 0em;
+  }
+  .welcomelogin{
+    display: none;
+  }
+}

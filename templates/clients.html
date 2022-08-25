@@ -1,0 +1,125 @@
+{% include 'header.html' %}
+  <div class="col-12 page-heading">
+   <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+      <h4 class="mb-sm-0">Client Details</h4>
+      <div class="page-title-right">
+         <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"> <a href="#">Dashboard</a> </li>
+            <li class="breadcrumb-item active">Client Details</li>
+         </ol>
+      </div>
+   </div>
+</div>
+<!-- page-heading -->
+</div>
+<!-- row end -->
+<div class="card admin-details card-bgchange">
+   <div class="card-header align-items-center d-flex">
+      <h4 class="card-title mb-0 flex-grow-1">Client Details</h4>
+   </div>
+   <div class="searchgroup">
+      <form action="">
+         <div class="row">
+            <div class="form-group col-lg-3 col-sm-6 col-12">
+               <label>Select Admin</label>
+
+               <select class="productselct form-control select2bs4" onchange="client(this.value)">
+                  <option selected="selected">All</option>
+                  {% for admin in message %}
+                     {% if admin.is_admin == True %}
+                  <option>{{admin.user_name}}</option>
+                  {% endif %}
+               {% endfor %}
+               </select>
+
+            </div>
+         </div>
+      </form>
+   </div>
+   <div class="card-body">
+      <table class="table table-hover dt-responsive" id="clientdetail">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Contact</th>
+               <th>Country</th>
+               <th>State</th>
+               <th>Address</th>
+               <th>Status</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for client in message %}
+               {% if client.is_client == True %}
+            <tr>
+               <td class="sorting_1">{{ forloop.counter }}</td>
+               <td id="name">{{client.user_name}}</td>
+               <td>{{client.email}}</td>
+               <td>{{client.mobile}}</td>
+               <td>{{client.country}}</td>
+               <td>{{client.state}}</td>
+               <td>{{client.Address}}</td>
+               {% if client.is_active %}
+               <td><span class="badge badge-soft-success text-uppercase"> Active</span></td>
+                  {% else %}
+                  <td><span class="badge badge-soft-danger text-uppercase"> Deactive</span></td>
+                  {% endif %}
+               </tr>
+            {% endif %}
+               {% endfor %}
+<!--            <tr class="even">-->
+<!--               <td class="sorting_1">2</td>-->
+<!--               <td>Charde Marshall </td>-->
+<!--               <td>adrissell0@edubl.org</td>-->
+<!--               <td>000 0000 000</td>-->
+<!--               <td>Edinburgh</td>-->
+<!--               <td>Selangor</td>-->
+<!--               <td>Menara Telekom,Jalan Pantai Baru, 59200 Kuala Lumpur</td>-->
+<!--               <td> <span class="badge badge-soft-danger text-uppercase"> Inactive</span> </td>-->
+<!--            </tr>-->
+<!--            <tr class="odd">-->
+<!--               <td class="sorting_1">3</td>-->
+<!--               <td>Brielle Williamson </td>-->
+<!--               <td>adrissell0@edubl.org</td>-->
+<!--               <td>000 0000 000</td>-->
+<!--               <td>San Francisco </td>-->
+<!--               <td>Selangor</td>-->
+<!--               <td>Menara Telekom,Jalan Pantai Baru, 59200 Kuala Lumpur</td>-->
+<!--               <td> <span class="badge badge-soft-success text-uppercase"> Active</span> </td>-->
+<!--            </tr>-->
+         </tbody>
+      </table>
+   </div>
+</div>
+<!-- admin-details end -->
+</div>
+</div>
+<!-- page-content end -->
+</div>
+<!-- main-content end -->
+</div>
+
+{% include 'footer.html' %}
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript">
+    // datatable init. start//
+    $(function() {
+      $("#clientdetail").DataTable({
+        "responsive": false,
+        "lengthChange": true,
+        "autoWidth": false,
+        "scrollX": true,
+      })
+    });
+    // datatable init. start//
+    </script>
+    <script>
+    $(function() {
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+    </script>

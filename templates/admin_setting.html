@@ -28,6 +28,11 @@
                     <div class="row settingcont">
 
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>User Name</label>
+                            <input type="text" class="form-control" value="{{ user.user_name }}" placeholder="" name="username" readonly>
+                        </div>
+
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Company Name</label>
                             <input type="text" class="form-control is-valid" name="companyname" placeholder="">
                         </div>
@@ -62,10 +67,7 @@
                             <input type="file" class="form-control-file" placeholder="" name="companylogo">
                         </div>
 
-                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
-                          <label>User Name</label>
-                            <input type="text" class="form-control" value="{{ user.user_name }}" placeholder="" name="username" readonly>
-                        </div>
+
 
 <!--                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">-->
 <!--                          <label>Password</label>-->

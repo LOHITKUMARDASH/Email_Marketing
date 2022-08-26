@@ -19,17 +19,17 @@
     <div class="searchgroup">
       <form action="">
         <div class="row">
-          <div class="form-group col-lg-3 col-sm-6 col-12">
-            <label>Select Client</label>
-            <select class="productselct form-control select2bs4">
-              <option value="" selected="selected">All</option>
-              <option value="">Client 1</option>
-              <option value="">Client 2</option>
-              <option value="">Client 3</option>
-              <option value="">Client 4</option>
-              <option value="">Client 5</option>
-            </select>
-          </div>
+<!--          <div class="form-group col-lg-3 col-sm-6 col-12">-->
+<!--            <label>Select Client</label>-->
+<!--            <select class="productselct form-control select2bs4">-->
+<!--              <option value="" selected="selected">All</option>-->
+<!--              <option value="">Client 1</option>-->
+<!--              <option value="">Client 2</option>-->
+<!--              <option value="">Client 3</option>-->
+<!--              <option value="">Client 4</option>-->
+<!--              <option value="">Client 5</option>-->
+<!--            </select>-->
+<!--          </div>-->
         </div>
       </form>
     </div>
@@ -47,29 +47,38 @@
         </thead>
         <tbody>
           <tr>
-            <td class="sorting_1">1</td>
-            <td>Argentina</td>
-            <td>adrissell0@edubl.org</td>
-            <td>000 0000 000</td>
-            <td>Selangor</td>
-            <td>Group1, Group2</td>
+            {% for client in messages %}
+            {% if client.admin_id == user.id %}
+            {% for customer in message %}
+            {% if customer.user_id == client.id %}
+            <td class="sorting_1">{{ forloop.counter }}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.mobile}}</td>
+            <td>{{customer.state}}</td>
+            <td>{{customer.checks}}</td>
           </tr>
-          <tr class="even">
-            <td class="sorting_1">2</td>
-            <td>Charde Marshall </td>
-            <td>adrissell0@edubl.org</td>
-            <td>000 0000 000</td>
-            <td>Selangor</td>
-            <td>Group3, Group4</td>
-          </tr>
-          <tr class="odd">
-            <td class="sorting_1">3</td>
-            <td>Brielle Williamson </td>
-            <td>adrissell0@edubl.org</td>
-            <td>000 0000 000</td>
-            <td>Selangor</td>
-            <td>Group1, Group4</td>
-          </tr>
+          {% endif %}
+         {% endfor %}
+      {% endif %}
+      {% endfor %}
+
+<!--          <tr class="even">-->
+<!--            <td class="sorting_1">2</td>-->
+<!--            <td>Charde Marshall </td>-->
+<!--            <td>adrissell0@edubl.org</td>-->
+<!--            <td>000 0000 000</td>-->
+<!--            <td>Selangor</td>-->
+<!--            <td>Group3, Group4</td>-->
+<!--          </tr>-->
+<!--          <tr class="odd">-->
+<!--            <td class="sorting_1">3</td>-->
+<!--            <td>Brielle Williamson </td>-->
+<!--            <td>adrissell0@edubl.org</td>-->
+<!--            <td>000 0000 000</td>-->
+<!--            <td>Selangor</td>-->
+<!--            <td>Group1, Group4</td>-->
+<!--          </tr>-->
         </tbody>
       </table>
     </div>

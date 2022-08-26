@@ -32,7 +32,11 @@
                      <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
                         <div class="dashsales-card">
                            <i class="far fa-mail-bulk"></i>
-                           <h4>Pending Emails <span>13,000</span></h4>
+                           {% for invoice in messagess %}
+                           {% if invoice.customer == user.user_name %}
+                           <h4>Pending Emails <span>{{invoice.due_quantity}}</span></h4>
+                           {% endif %}
+                           {% endfor %}
                         </div>
                      </div>
                   </div>
@@ -113,7 +117,7 @@
       {% for client in messages %}
       {% if client.admin_id == user.id %}
          {% for customer in message %}
-         {% if client.id == customer.user_id %}
+         {% if customer.user_id == client.id %}
          counts++;
          console.log("counts",counts)
          document.getElementById("cus").innerHTML = counts

@@ -1,8 +1,30 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.admin import UserAdmin
+import logging
+logger = logging.getLogger(__name__)
 # Register your models here.
 
-admin.site.register(NewUser)
+class UserAdminConfig(UserAdmin):
+    model = NewUser
+    list_display = ('id', 'user_name',)
+    ordering = ('user_name',)
+    fieldsets = (
+        (None, {'fields': ('email', 'user_name', 'first_name')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_super', 'is_admin', 'is_client')}),
+        ('Personal', {'fields': ('password',)}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                 'user_name', 'email', 'first_name', 'password', 'is_staff','is_active', 'is_super', 'is_admin', 'is_client')}
+         ),
+    )
+
+
+admin.site.register(NewUser, UserAdminConfig)
 admin.site.register(product)
 admin.site.register(invoice_settings)
 admin.site.register(fileuploads)

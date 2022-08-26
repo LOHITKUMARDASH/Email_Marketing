@@ -291,14 +291,18 @@ def clients(request):
 def admin_dashboard(request):
     data = NewUser.objects.all()
     datas = customers.objects.all()
+    dataI = Invoice.objects.all()
     all_data_user = []
     all_data_customer = []
+    all_data_invoice = []
     for x in data:
         if x.is_client == True :
             all_data_user.append(x)
     for y in datas:
         all_data_customer.append(y)
-    return render(request, 'admin_dashboard.html', {'messages': all_data_user, 'message': all_data_customer})
+    for z in dataI:
+        all_data_invoice.append(z)
+    return render(request, 'admin_dashboard.html', {'messages': all_data_user, 'message': all_data_customer, 'messagess': all_data_invoice})
 
 def admin_invoice(request):
     datas = product.objects.all()
@@ -452,7 +456,16 @@ def client_buy_product(request):
         return HttpResponse(username)
 
 def admin_customerlist(request):
-    return render(request, 'admin_customerlist.html')
+    data = NewUser.objects.all()
+    datas = customers.objects.all()
+    all_data_user = []
+    all_data_customer = []
+    for x in data:
+        if x.is_client == True:
+            all_data_user.append(x)
+    for y in datas:
+        all_data_customer.append(y)
+    return render(request, 'admin_customerlist.html', {'messages': all_data_user, 'message': all_data_customer})
 
 
 def admin_template(request):

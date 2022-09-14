@@ -102,7 +102,6 @@
 
 <script>
    function test(){
-      console.log("HIII")
       var count = 0
       {% for client in messages %}
       {% if client.admin_id == user.id %}
@@ -115,15 +114,19 @@
 
       var counts = 0
       {% for client in messages %}
-      {% if client.admin_id == user.id %}
-         {% for customer in message %}
-         {% if customer.user_id == client.id %}
-         counts++;
-         console.log("counts",counts)
-         document.getElementById("cus").innerHTML = counts
+         console.log("HEEEE",{{user.id}})
+         {% if client.admin_id == user.id %}
+                  console.log("HIII",{{user.id}})
+                  {% for customer in message %}
+                  {% if customer.user_id == client.id %}
+                     counts++
+                     console.log("counts",counts)
+                     document.getElementById("cus").innerHTML = counts
+                  {% endif %}
+                  {% endfor %}
+                  {% else %}
+         document.getElementById("cus").innerHTML = "No Data"
          {% endif %}
-         {% endfor %}
-      {% endif %}
       {% endfor %}
    }
    window.onload = test;

@@ -108,26 +108,25 @@
          count++;
          document.getElementById("mes").innerHTML = count
       {% else %}
-         document.getElementById("mes").innerHTML = "No Data"
+         document.getElementById("mes").innerHTML = "Empty"
       {% endif %}
       {% endfor %}
 
       var counts = 0
       {% for client in messages %}
-         console.log("HEEEE",{{user.id}})
          {% if client.admin_id == user.id %}
-                  console.log("HIII",{{user.id}})
-                  {% for customer in message %}
-                  {% if customer.user_id == client.id %}
-                     counts++
-                     console.log("counts",counts)
-                     document.getElementById("cus").innerHTML = counts
-                  {% endif %}
-                  {% endfor %}
-                  {% else %}
-         document.getElementById("cus").innerHTML = "No Data"
+            {% for customer in message %}
+            {% if customer.user_id == client.id %}
+               counts++
+               console.log("counts",counts)
+               document.getElementById("cus").innerHTML = counts
+            {% endif %}
+            {% endfor %}
+            {% else %}
+         document.getElementById("cus").innerHTML = "Empty"
          {% endif %}
       {% endfor %}
+
    }
    window.onload = test;
 

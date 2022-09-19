@@ -274,11 +274,12 @@ def invoice_letter(request, id):
 
 def dashboard(request):
     data = NewUser.objects.all()
+    datas = Invoice.objects.all()
     count = 0
     for x in data:
         if x.is_admin == True:
             count +=1
-    return render(request, 'dashboard.html', {'message': count})
+    return render(request, 'dashboard.html', {'message': count, 'datas': datas})
 
 def clients(request):
     data = NewUser.objects.all().order_by('-created_at')
@@ -481,8 +482,8 @@ def admin_setting(request):
 
 # Client Part Views
 def client_dashboard(request):
-    data = customers.objects.all().count()
-    datas = group.objects.all().count()
+    data = customers.objects.all()
+    datas = group.objects.all()
     Datas = fileuploads.objects.all().count()
     print(data)
     return render(request, 'client_dashboard.html', {'data': data, 'datas': datas, 'Datas': Datas})

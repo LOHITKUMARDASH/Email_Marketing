@@ -21,7 +21,7 @@
             <div class="dashhome-card">
                <i class="far fa-users"></i>
                {% if data %}
-               <h4>Total Customers <span>{{ data }}</span></h4>
+               <h4>Total Customers <span id="customer"></span></h4>
                {% endif %}
             </div>
          </div>
@@ -30,7 +30,7 @@
                <i class="far fa-users-cog"></i>
                {% if datas %}
 
-               <h4>Total Groups <span>{{ datas }}</span></h4>
+               <h4>Total Groups <span id="group"></span></h4>
                {% endif %}
             </div>
          </div>
@@ -103,4 +103,29 @@
 </div>
 </div>
 
+<script>
+   function test(){
+      var count = 0
+      {% for client in datas %}
+      {% if client.cid == user.id %}
+         count++;
+         document.getElementById("group").innerHTML = count
+      {% else %}
+         document.getElementById("group").innerHTML = "Empty"
+      {% endif %}
+      {% endfor %}
+
+      var count = 0
+      {% for client in data %}
+      {% if client.user_id == user.id %}
+         count++;
+         document.getElementById("customer").innerHTML = count
+      {% else %}
+         document.getElementById("customer").innerHTML = "Empty"
+      {% endif %}
+      {% endfor %}
+   }
+   window.onload = test;
+
+</script>
 {% include 'client_footer.html' %}

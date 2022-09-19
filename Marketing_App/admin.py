@@ -10,9 +10,9 @@ class UserAdminConfig(UserAdmin):
     list_display = ('id', 'user_name',)
     ordering = ('user_name',)
     fieldsets = (
-        (None, {'fields': ('email', 'user_name', 'first_name')}),
+        (None, {'fields': ('email', 'user_name', 'first_name', '', 'country', 'state', 'Address','is_credit', 'admin_id')}),
         ('Permissions', {'fields': ('is_staff', 'is_active', 'is_super', 'is_admin', 'is_client')}),
-        ('Personal', {'fields': ('password',)}),
+        ('Personal', {'fields': ('password1',)}),
     )
 
     add_fieldsets = (
@@ -24,7 +24,7 @@ class UserAdminConfig(UserAdmin):
     )
 
 
-admin.site.register(NewUser, UserAdminConfig)
+admin.site.register(NewUser)
 admin.site.register(product)
 admin.site.register(invoice_settings)
 admin.site.register(fileuploads)

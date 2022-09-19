@@ -19,11 +19,9 @@
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashhome-card">
                <i class="fal fa-users-medical"></i>
-
                {% if message %}
                <h4>Total Admins <span>{{message}}</span></h4>
                {% endif %}
-
             </div>
          </div>
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
@@ -35,7 +33,7 @@
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashsales-card">
                <i class="far fa-chart-bar"></i>
-               <h4>Total Sales <span>13,000</span></h4>
+               <h4>Total Sales <span id="price"></span></h4>
             </div>
          </div>
       </div>
@@ -97,5 +95,19 @@
 </div>
 </div>
 </div> 
-</div>       
+</div>
+
+<script>
+   function test(){
+      var sum = 0
+      {% for price in datas %}
+      {% if price.user_id == user.id %}
+         sum = sum+{{price.price}}
+         document.getElementById("price").innerHTML = sum
+      {% endif %}
+      {% endfor %}
+   }
+   window.onload = test;
+
+</script>
 {% include 'footer.html' %}

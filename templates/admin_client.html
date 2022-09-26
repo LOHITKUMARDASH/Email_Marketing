@@ -17,7 +17,7 @@
           <div class="card-header align-items-center d-flex">
             <h4 class="card-title mb-0 flex-grow-1">Client Details</h4>
           </div>
-          {% if message %}
+
           <div class="card-body">
             <table class="table table-hover dt-responsive" id="clientdetail">
               <thead>
@@ -33,10 +33,11 @@
                   <th>Action</th>
                 </tr>
               </thead>
+              {% for client in message %}
+                  {% if client.admin_id == user.id %}
               <tbody>
                 <tr>
-                  {% for client in message %}
-                  {% if client.admin_id == user.id %}
+
 <!--                    <td>{{ forloop.counter }}</td>-->
                     <td>{{ client.user_name }}</td>
                     <td>{{ client.email }}</td>
@@ -62,12 +63,9 @@
                     </div>
                   </td>
                 </tr>
-                {% endif %}
-                {% endfor %}
-                {% else %}
-                <h1> No Data </h1>
-                {% endif %}
               </tbody>
+              {% endif %}
+              {% endfor %}
             </table>
           </div>
         </div>
@@ -179,57 +177,61 @@
 <!-- JAVASCRIPT -->
 <script>
   $(function() {
-    var Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
 
-    $('.swalDefaultSuccess').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: ' The information was successfully updated.'
-      })
-    });
+      $('.swalDefaultSuccess').click(function() {
+        Toast.fire({
+          icon: 'success',
+          title: ' The information was successfully updated.',
+        })
+      });
 
-    $('.swalDefaultSucces').click(function() {
-      Toast.fire({
-        icon: 'success',
-        title: ' The information was successfully saved.'
-      })
-    });
+      $('.swalDefaultSucces').click(function() {
+        Toast.fire({
+          icon: 'success',
+          title: ' The information was successfully saved.',
+        })
+      });
 
-    $('.swalDefaultInfo').click(function() {
-      Toast.fire({
-        icon: 'info',
-        title: 'Admin information successfully updated.'
-      })
-    });
-    $('.swalDefaultError').click(function() {
-      Toast.fire({
-        icon: 'error',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultWarning').click(function() {
-      Toast.fire({
-        icon: 'warning',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
-    });
-    $('.swalDefaultQuestion').click(function() {
-      Toast.fire({
-        icon: 'question',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
+      $('.swalDefaultInfo').click(function() {
+        Toast.fire({
+          icon: 'info',
+          title: 'Admin information successfully updated.',
+        })
+      });
+      $('.swalDefaultError').click(function() {
+        Toast.fire({
+          icon: 'error',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+        })
+      });
+      $('.swalDefaultWarning').click(function() {
+        Toast.fire({
+          icon: 'warning',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+        });
+      });
+      $('.swalDefaultQuestion').click(function() {
+        Toast.fire({
+          icon: 'question',
+          title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+        })
+      });
     });
 </script>
 <script type="text/javascript">
    // datatable init. start//
     $(function () {
-      $("#clientdetail").DataTable({
-        "responsive": false, "lengthChange": true, "autoWidth": false,"scrollX": true,
+     $("#clientdetail").DataTable({
+        "responsive": false,
+         "lengthChange": true,
+         "autoWidth": false,
+         "scrollX": true,
       })
     });
    // datatable init. start//

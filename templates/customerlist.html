@@ -31,10 +31,10 @@
             <th>Action</th>
           </tr>
         </thead>
+        {% for emails in messages %}
+            {% if emails.user_id == user.id %}
         <tbody>
           <tr>
-            {% for emails in messages %}
-                    {% if emails.user_id == user.id %}
 <!--            <td class="sorting_1">1</td>-->
             <td>{{emails.name}}</td>
             <td>{{emails.email}}</td>
@@ -76,9 +76,9 @@
 <!--              </div>-->
 <!--            </td>-->
 <!--          </tr>-->
-            {% endif %}
-          {%endfor%}
         </tbody>
+         {% endif %}
+          {%endfor%}
       </table>
     </div>
   </div>

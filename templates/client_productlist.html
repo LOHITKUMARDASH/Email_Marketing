@@ -33,10 +33,10 @@
                   <th>Status</th>
                 </tr>
               </thead>
+                {% for invoice in message %}
+                  {% if invoice.customer == user.user_name %}
               <tbody>
                 <tr>
-                  {% for invoice in message %}
-                  {% if invoice.customer == user.user_name %}
 <!--                   <td>{{ forloop.counter0 }}</td>-->
                   <td>{{ invoice.productName }} <span class="product-decr">
                       <small>{{ product.description }}</small>
@@ -51,8 +51,6 @@
                       <span class="badge badge-soft-success text-uppercase">Active</span>
                   </td>
                 </tr>
-                {% endif %}
-                {% endfor %}
 <!--                <tr>-->
 <!--                  <td>1</td>-->
 <!--                  <td>2 Lakhs<span class="product-decr">-->
@@ -70,6 +68,8 @@
 <!--                  </td>-->
 <!--                </tr>-->
               </tbody>
+                {% endif %}
+                {% endfor %}
             </table>
           </div>
         </div>

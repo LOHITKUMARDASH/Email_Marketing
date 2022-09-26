@@ -26,6 +26,7 @@
                      <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
                         <div class="dashrevnu-card">
                            <i class="far fa-user-friends"></i>
+
                            <h4>Total Customers <span id="cus"></span></h4>
                         </div>
                      </div>
@@ -36,20 +37,25 @@
                            {% if invoice.customer == user.user_name %}
                            <h4>Pending Emails <span>{{invoice.due_quantity}}</span></h4>
                            {% endif %}
+                           {% if invoice not in messagess %}
+                              <h4>Pending Emails <span>0</span></h4>
+                           {% endif %}
                            {% endfor %}
+
+
                         </div>
                      </div>
                   </div>
                   <div class="salesadmin-list">
                      <div class="sales-table col-lg-8 col-sm-12 col-12 float-left">
                         <div class="sales-list table-responsive">
-                           <h4>Moniter Sales List </h4>
+                           <h4>Monitor Sales List </h4>
                            <table class="table" id="sales-table">
                               <thead>
                                  <tr>
                                     <th>Total</th>
                                     <th>Active Clients</th>
-                                    <th>Expried Clients</th>
+                                    <th>Expired Clients</th>
                                     <th>Enquiry Email</th>
                                  </tr>
                               </thead>
@@ -86,7 +92,7 @@
                            <h4 class="title-conf-orgnt">Total Clients Details </h4>
                            <p>Email marketing is a form of marketing that can make the customers on your email list aware of new products, discounts, and other services</p>
                            <div class="sub-admin-link">
-                              <a href="admin_client" class="admin-bttn" target="_blank" title=""><i class="far fa-plus"></i>Check Client List</a>
+                              <a href="admin_client" class="admin-bttn" title="">Check Client List</a>
                            </div>
                         </div>
                      </div>
@@ -108,7 +114,7 @@
          count++;
          document.getElementById("mes").innerHTML = count
       {% else %}
-         document.getElementById("mes").innerHTML = "Empty"
+         document.getElementById("mes").innerHTML = count
       {% endif %}
       {% endfor %}
 
@@ -123,10 +129,9 @@
             {% endif %}
             {% endfor %}
             {% else %}
-         document.getElementById("cus").innerHTML = "Empty"
+               document.getElementById("cus").innerHTML = counts
          {% endif %}
       {% endfor %}
-
    }
    window.onload = test;
 

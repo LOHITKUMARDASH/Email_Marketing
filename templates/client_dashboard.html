@@ -20,80 +20,48 @@
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashhome-card">
                <i class="far fa-users"></i>
-               {% if data %}
-               <h4>Total Customers <span id="customer"></span></h4>
-               {% endif %}
+               <h4>Purchased Emails <span id="purchased"></span></h4>
             </div>
          </div>
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashrevnu-card">
                <i class="far fa-users-cog"></i>
-               {% if datas %}
-
-               <h4>Total Groups <span id="group"></span></h4>
-               {% endif %}
+               <h4>Remaining Emails <span id="email"></span></h4>
             </div>
          </div>
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashsales-card">
                <i class="far fa-send-backward"></i>
-               {% if Datas %}
+               <h4>Plan Expire <span id="expire"></span></h4>
+            </div>
+         </div>
+      </div>
+      <div class="col-12 page-heading">
+</div>
+</div>
+<div class="superadmin-dashboard">
+   <div class="row">
+      <div class="dashboard-home">
+         <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+            <div class="dashhome-card">
+               <i class="far fa-users"></i>
+               <h4>Total Customers <span id="customer"></span></h4>
+            </div>
+         </div>
+         <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+            <div class="dashrevnu-card">
+               <i class="far fa-users-cog"></i>
+               <h4>Total Groups <span id="group"></span></h4>
+            </div>
+         </div>
+         <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
+            <div class="dashsales-card">
+               <i class="far fa-send-backward"></i>
                <h4>Template Lists <span>{{Datas}}</span></h4>
-               {% endif %}
             </div>
          </div>
       </div>
-      <div class="salesadmin-list">
-         <div class="sales-table col-lg-8 col-sm-12 col-12 float-left">
-            <div class="sales-list table-responsive">
-               <h4>Moniter Sales List </h4>
-               <table class="table" id="sales-table">
-                  <thead>
-                     <tr>
-                        <th>Total</th>
-                        <th>Customers</th>
-                        <th>Groups</th>
-                        <th>Enquiry Email</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>Month</td>
-                        <td>2105</td>
-                        <td>545</td>
-                        <td>947</td>
-                     </tr>
-                     <tr>
-                        <td>Quarterly</td>
-                        <td>62,105</td>
-                        <td>8,545</td>
-                        <td>10,947</td>
-                     </tr>
-                     <tr>
-                        <td>Yearly</td>
-                        <td>86,2105</td>
-                        <td>98,545</td>
-                        <td>71,0947</td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         <div class="newadmin-list col-lg-4 col-sm-12 col-12 float-left">
-            <div class="org-admin-list">
-               <div class="conf-heading-title">
-                  <div class="wc-smll-logo">
-                     <img src="../static/assets/images/mail.png">
-                  </div>
-               </div>
-               <h4 class="title-conf-orgnt">Total Customer Details </h4>
-               <p>Email marketing is a form of marketing that can make the customers on your email list aware of new products, discounts, and other services</p>
-               <div class="sub-admin-link">
-                  <a href="customerlist" class="admin-bttn" target="_blank" title=""><i class="far fa-plus"></i>Check Customer List</a>
-               </div>
-            </div>
-         </div>
-      </div>
+
       <!-- sales table -->  
    </div>
 </div>
@@ -111,7 +79,7 @@
          count++;
          document.getElementById("group").innerHTML = count
       {% else %}
-         document.getElementById("group").innerHTML = "Empty"
+         document.getElementById("group").innerHTML = 0
       {% endif %}
       {% endfor %}
 
@@ -121,9 +89,18 @@
          count++;
          document.getElementById("customer").innerHTML = count
       {% else %}
-         document.getElementById("customer").innerHTML = "Empty"
+         document.getElementById("customer").innerHTML = 0
       {% endif %}
       {% endfor %}
+
+       {% for invoice in Invoice %}
+       {% if invoice.customer == user.user_name %}
+         document.getElementById("email").innerHTML = {{invoice.due_quantity}}
+         document.getElementById("expire").innerHTML = "{{ invoice.expiry_date }}"
+         document.getElementById("purchased").innerHTML = "{{ invoice.quantity}}"
+         console.log("{{invoice.expiry_date}}")
+       {% endif %}
+       {% endfor %}
    }
    window.onload = test;
 

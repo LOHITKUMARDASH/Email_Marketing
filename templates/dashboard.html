@@ -21,13 +21,15 @@
                <i class="fal fa-users-medical"></i>
                {% if message %}
                <h4>Total Admins <span>{{message}}</span></h4>
+               {% else %}
+               <h4>Total Admins <span>0</span></h4>
                {% endif %}
             </div>
          </div>
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
             <div class="dashrevnu-card">
                <i class="far fa-money-bill-alt"></i>
-               <h4>Total Revenue <span>32,0090</span></h4>
+               <h4>Total Mails <span id="mail"></span></h4>
             </div>
          </div>
          <div class="dashboard col-lg-4 col-sm-6 col-12 float-left">
@@ -83,7 +85,7 @@
                <h4 class="title-conf-orgnt">Total Admins Details </h4>
                <p>Email marketing is a form of marketing that can make the customers on your email list aware of new products, discounts, and other services</p>
                <div class="sub-admin-link">
-                  <a href="/admin_details" class="admin-bttn" target="_blank" title=""><i class="far fa-plus"></i>Check Admin List</a>
+                  <a href="/admin_details" class="admin-bttn" title="">Check Admin List</a>
                </div>
             </div>
          </div>
@@ -100,10 +102,16 @@
 <script>
    function test(){
       var sum = 0
+      var mails = 0
       {% for price in datas %}
       {% if price.user_id == user.id %}
          sum = sum+{{price.price}}
+         mails = mails+{{price.quantity}}
          document.getElementById("price").innerHTML = sum
+         document.getElementById("mail").innerHTML = mails
+      {% else %}
+         document.getElementById("price").innerHTML = sum
+         document.getElementById("mail").innerHTML = mails
       {% endif %}
       {% endfor %}
    }

@@ -28,14 +28,14 @@
                    <th>Action</th>
                  </tr>
                </thead>
+                 {% for file in message %}
                <tbody>
                  <tr>
-                   {% for file in message %}
                    <td>{{ forloop.counter }}</td>
                    <td>{{ file.templates }}</td>
                    <td>
                      <div class="btn-group btn-group-sm">
-                       <a href="/view_template/{{file.id}}"><button type="button" class="btn btn-sm btn-warning" id="template" >
+                       <a href="/view_template/{{file.id}}" target="_blank"><button type="button" class="btn btn-sm btn-warning" id="template" >
                          <i class="fal fa-eye"></i>
                        </button></a>
                        <!-- <button type="button" class="btn btn-sm btn-danger delete-msg">
@@ -44,7 +44,6 @@
                      </div>
                    </td>
                  </tr>
-                 {% endfor %}
 <!--                 <tr>-->
 <!--                   <td>2</td>-->
 <!--                   <td>Secuodsoft Technologies Private Limited</td>-->
@@ -60,6 +59,7 @@
 <!--                   </td>-->
 <!--                 </tr>-->
                </tbody>
+                 {% endfor %}
              </table>
            </div>
          </div>

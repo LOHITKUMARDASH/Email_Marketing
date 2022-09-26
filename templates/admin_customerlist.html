@@ -37,7 +37,7 @@
       <table class="table table-hover dt-responsive" id="clientdeatils">
         <thead>
           <tr>
-            <th>#</th>
+<!--            <th>#</th>-->
             <th>Name</th>
             <th>Email</th>
             <th>Contact</th>
@@ -45,24 +45,19 @@
             <th>Group</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            {% for client in messages %}
+          {% for client in messages %}
             {% if client.admin_id == user.id %}
             {% for customer in message %}
             {% if customer.user_id == client.id %}
-            <td class="sorting_1">{{ forloop.counter }}</td>
+        <tbody>
+          <tr>
+<!--            <td class="sorting_1">{{ forloop.counter }}</td>-->
             <td>{{customer.name}}</td>
             <td>{{customer.email}}</td>
             <td>{{customer.mobile}}</td>
             <td>{{customer.state}}</td>
             <td>{{customer.checks}}</td>
           </tr>
-          {% endif %}
-         {% endfor %}
-      {% endif %}
-      {% endfor %}
-
 <!--          <tr class="even">-->
 <!--            <td class="sorting_1">2</td>-->
 <!--            <td>Charde Marshall </td>-->
@@ -80,6 +75,10 @@
 <!--            <td>Group1, Group4</td>-->
 <!--          </tr>-->
         </tbody>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
       </table>
     </div>
   </div>

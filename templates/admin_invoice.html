@@ -38,16 +38,7 @@
                 <div class="invoiceform-card">
                   <div class="form-card edit-contentdetal">
                     <div class="row">
-                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
-                          <label>Client Name </label>
-                          <div class="icontext-style autorusult-fm">
-                            <span class="icon-group-addon">
-                              <i class="far fa-user-alt"></i>
-                            </span>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-                            <p id="umessage" style="color:red"></p>
-                          </div>
-                        </div>
+
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Email Id/User Name</label>
                           <div class="icontext-style">
@@ -59,12 +50,22 @@
                           </div>
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
+                          <label>Client Name </label>
+                          <div class="icontext-style autorusult-fm">
+                            <span class="icon-group-addon">
+                              <i class="far fa-user-alt"></i>
+                            </span>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                            <p id="umessage" style="color:red"></p>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Password</label>
                           <div class="icontext-style">
                             <span class="icon-group-addon">
                               <i class="far fa-envelope-open-text"></i>
                             </span>
-                            <input type="text" class="form-control" name="password" id="password" placeholder="Enter Password">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                             <p id="pmessage" style="color:red"></p>
                           </div>
                         </div>
@@ -517,7 +518,7 @@ function autocomplete(inp, arr) {
 var courses = ["Charde Marshall", "Brielle Williamson","Argentina", "Aldous Drissell", "Phaedra Dankov","Abhilasha Agarwal", "Aarav Khatri", "Arundhati Ahuja","Deepika Laghari", "Bhavna Patel", "Bhavya Reddy","Chatura Anthony", "Chetan Acharya"];
 
 /initiate the autocomplete function on the "username" element, and pass along the countries array as possible autocomplete values:/
-autocomplete(document.getElementById("username"), courses);
+<!--autocomplete(document.getElementById("username"), courses);-->
 </script>
 
 <script>

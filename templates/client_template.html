@@ -28,9 +28,9 @@
                    <th>Action</th>
                  </tr>
                </thead>
+                 {% for file in message %}
                <tbody>
                  <tr>
-                   {% for file in message %}
                    <td>{{ forloop.counter }}</td>
                    <td>{{ file.templates }}</td>
                    <td>
@@ -40,14 +40,13 @@
                        </span>
                        <button type="button" data-toggle="modal" data-target="#edit" class="btn btn-sm btn-success" onclick="temp({{file.id}})">
                         <i class="fal fa-edit"></i>
-                      </button> 
+                      </button>
                       <button type="button" data-target="#sendmail" data-toggle="modal" class="btn btn-sm btn-primary" onclick="tempsent({{file.id}})">
                         <i class="fal fa-paper-plane"></i>
-                      </button> 
+                      </button>
                      </div>
                    </td>
                  </tr>
-                 {% endfor %}
 <!--                 <tr>-->
 <!--                   <td>2</td>-->
 <!--                   <td>Secuodsoft Technologies Private Limited</td>-->
@@ -66,6 +65,7 @@
 <!--                   </td>-->
 <!--                 </tr>-->
                </tbody>
+                 {% endfor %}
              </table>
            </div>
          </div>

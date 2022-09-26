@@ -33,24 +33,22 @@
             <th>Action</th>
           </tr>
         </thead>
+        {% for group in message %}
+            {% if group.cid == user.id %}
         <tbody>
           <tr>
-            {% for group in message %}
-                      {% if group.cid == user.id %}
             <td>{{ forloop.counter }}</td>
             <td>{{group.name}}</td>
             <td>120</td>
             <td>
               <div class="btn-group btn-group-sm"> <span class="btn btn-sm btn-warning grupcustmicon">
-                        <a href="customerlist"><i class="fa fa-users"></i></a></span>
+                        <a href="customerlists/{{group.name}}"><i class="fa fa-users"></i></a></span>
                 <button type="button" data-toggle="modal" data-target="#delete" class="btn btn-sm btn-danger" onclick="test({{group.id}})">
                         <i class="fa fa-trash" ></i>
                       </button>
               </div>
             </td>
           </tr>
-          {% endif %}
-                {% endfor %}
 <!--          <tr>-->
 <!--            <td>2</td>-->
 <!--            <td>Group 2</td>-->
@@ -63,6 +61,8 @@
 <!--            </td>-->
 <!--          </tr>-->
         </tbody>
+        {% endif %}
+          {% endfor %}
       </table>
     </div>
   </div>

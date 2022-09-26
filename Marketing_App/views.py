@@ -59,7 +59,7 @@ def admin_register(request):
         is_admin = True
         user = NewUser(user_name=username, email=email, mobile=mobile, password=password,country=country, state=state, Address=address, is_admin=is_admin, is_active=is_active)
         user.set_password(password)
-        # user.save()
+        user.save()
         print("END")
         return HttpResponse(username)
 
@@ -100,7 +100,7 @@ def add_product(request, id):
         price = request.POST['price']
         duration = request.POST['duration']
         description = request.POST['description']
-        # product(name=name, quantity=quantity, price=price, duration=duration, description=description, user_id=id).save()
+        product(name=name, quantity=quantity, price=price, duration=duration, description=description, user_id=id).save()
         time.sleep(2)
     return redirect('productlist')
 
@@ -139,7 +139,7 @@ def settingss(request, id):
         panno = request.POST['panno']
         website = request.POST['website']
         currency = request.POST['currency']
-        # companylogo = request.FILES['companylogo']
+        companylogo = request.FILES['companylogo']
         address = request.POST['address']
         bankname = request.POST['bankname']
         branchname = request.POST['branchname']
@@ -155,17 +155,17 @@ def settingss(request, id):
         thankyoumessage = request.POST['thankyoumessage']
         footernotes = request.POST['footernotes']
         print(footernotes)
-        # stamp = request.FILES['stamp']
+        stamp = request.FILES['stamp']
         termsandconditions = request.POST['termsandconditions']
         termsandconditionsdetails = request.POST['termsandconditionsdetails']
-        # invoice_settings(CompanyName=name, email=email, ContactNumber=contactnumber,
-        #                GSTIN=gstin, PanNo=panno, Website=website, Currency=currency,
-        #                CompanyLogo=companylogo, Address=address, BankName=bankname, BranchName=branchname,
-        #                AccountName=accountname, AccountType=accounttype,
-        #                BankAccountNo=bankaccountno, IFSCNo=ifscno, Heading=heading
-        #                ,Client=client, Price=price, SubTotal=SubTotal, TotalAmount=totalamount,
-        #                ThankyouMassage=thankyoumessage, FooterNotes=footernotes, UploadYourCompanyStamp=stamp,
-        #                TermsandConditions=termsandconditions, TermsandConditionsDetails=termsandconditionsdetails, user_id=id)#.save()
+        invoice_settings(CompanyName=name, email=email, ContactNumber=contactnumber,
+                       GSTIN=gstin, PanNo=panno, Website=website, Currency=currency,
+                       CompanyLogo=companylogo, Address=address, BankName=bankname, BranchName=branchname,
+                       AccountName=accountname, AccountType=accounttype,
+                       BankAccountNo=bankaccountno, IFSCNo=ifscno, Heading=heading
+                       ,Client=client, Price=price, SubTotal=SubTotal, TotalAmount=totalamount,
+                       ThankyouMassage=thankyoumessage, FooterNotes=footernotes, UploadYourCompanyStamp=stamp,
+                       TermsandConditions=termsandconditions, TermsandConditionsDetails=termsandconditionsdetails, user_id=id).save()
     return render(request, 'setting.html', {'message': all_data_setting})
 
 def update_product(request):
@@ -253,8 +253,8 @@ def admin_buy_product(request):
         for x in data:
             if x.name == proname:
                 quantity = x.quantity
-                # Invoice(customer=username, productName=proname, price=proprice, duration=prodays,
-                #         active_date=proactive, expiry_date=expiry_date, payment=payment,quantity=quantity,due_quantity=quantity, user_id=userid).save()
+                Invoice(customer=username, productName=proname, price=proprice, duration=prodays,
+                        active_date=proactive, expiry_date=expiry_date, payment=payment,quantity=quantity,due_quantity=quantity, user_id=userid).save()
         return HttpResponse(username)
 
 
@@ -299,10 +299,13 @@ def admin_dashboard(request):
     for x in data:
         if x.is_client == True :
             all_data_user.append(x)
+        else:
+            all_data_user.append(0)
     for y in datas:
         all_data_customer.append(y)
     for z in dataI:
         all_data_invoice.append(z)
+
     return render(request, 'admin_dashboard.html', {'messages': all_data_user, 'message': all_data_customer, 'messagess': all_data_invoice})
 
 def admin_invoice(request):
@@ -485,8 +488,9 @@ def client_dashboard(request):
     data = customers.objects.all()
     datas = group.objects.all()
     Datas = fileuploads.objects.all().count()
+    invoice = Invoice.objects.all()
     print(data)
-    return render(request, 'client_dashboard.html', {'data': data, 'datas': datas, 'Datas': Datas})
+    return render(request, 'client_dashboard.html', {'data': data, 'datas': datas, 'Datas': Datas, 'Invoice': invoice})
 
 def client_productlist(request):
     data = Invoice.objects.all()
@@ -501,6 +505,19 @@ def customerlist(request):
     for y in datas:
         all_data_email.append(y)
 
+    data = group.objects.all()
+    all_data_group = []
+    for x in data:
+        all_data_group.append(x)
+    return render(request, 'customerlist.html', {'message': all_data_group, 'messages': all_data_email})
+
+def customerlists(request, name):
+    datas = customers.objects.all().order_by('-id')
+    all_data_email = []
+    for y in datas:
+        for j in y.checks:
+            if j == name:
+                all_data_email.append(y)
     data = group.objects.all()
     all_data_group = []
     for x in data:

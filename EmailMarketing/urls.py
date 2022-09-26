@@ -64,6 +64,7 @@ urlpatterns = [
     path('client_dashboard', views.client_dashboard, name='client_dashboard'),
     path('client_productlist', views.client_productlist, name='client_productlist'),
     path('customerlist', views.customerlist, name='customerlist'),
+    path('customerlists/<str:name>', views.customerlists, name='customerlists'),
     path('add_email/<int:id>', views.add_email, name='add_email'),
     path('email_delete', views.email_delete, name='email_delete'),
     path('client_managegroup', views.client_managegroup, name='client_managegroup'),

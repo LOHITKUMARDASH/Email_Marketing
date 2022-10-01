@@ -39,6 +39,7 @@ urlpatterns = [
     path('view_template/<int:id>', views.view_template, name='view_template'),
     path('temp_delete', views.temp_delete, name='temp_delete'),
     path('settingss/<int:id>', views.settingss, name='settingss'),
+    path('update_setting', views.update_setting, name='update_setting'),
 
     path('invoice_letter/<int:id>', views.invoice_letter, name='invoice_letter'),
 
@@ -74,5 +75,8 @@ urlpatterns = [
     path('client_template_details/<int:cid>', views.client_template_details, name='client_template_details'),
     path('update_client_template_details', views.update_client_template_details, name='update_client_template_details'),
     path('send_email/<int:uid>', views.send_email, name='send_email'),
+
+    path('count_group', views.count_group, name='count_group'),
 ]
+
 

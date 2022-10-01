@@ -6,7 +6,7 @@
       <div class="page-title-right">
          <ol class="breadcrumb m-0">
             <li class="breadcrumb-item">
-               <a href="#">Dashboard</a>
+               <a href="{% url 'client_dashboard' %}">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">Home Page</li>
          </ol>
@@ -98,7 +98,6 @@
          document.getElementById("email").innerHTML = {{invoice.due_quantity}}
          document.getElementById("expire").innerHTML = "{{ invoice.expiry_date }}"
          document.getElementById("purchased").innerHTML = "{{ invoice.quantity}}"
-         console.log("{{invoice.expiry_date}}")
        {% endif %}
        {% endfor %}
    }

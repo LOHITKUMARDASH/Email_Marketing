@@ -7,7 +7,7 @@
                <div class="page-title-right">
                  <ol class="breadcrumb m-0">
                    <li class="breadcrumb-item">
-                     <a href="#">Dashboard</a>
+                     <a href="{% url 'dashboard' %}">Dashboard</a>
                    </li>
                    <li class="breadcrumb-item active">Manage Template</li>
                  </ol>
@@ -181,7 +181,6 @@ $('.delete-msg').click(function() {
   function temp(val)
     {
       var t = val
-      console.log("HOOIO"+t)
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",

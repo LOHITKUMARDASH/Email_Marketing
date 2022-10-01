@@ -1,14 +1,11 @@
-
-
 {% include 'header.html' %}
-
           <div class="col-12 page-heading">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
               <h4 class="mb-sm-0">Create Invoice</h4>
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
                   </li>
                   <li class="breadcrumb-item active">Create Invoice</li>
                 </ol>
@@ -302,6 +299,7 @@
 
    <script>
       function showstep2() {
+        var flag = true
          var username = document.getElementById("username").value;
          var email = document.getElementById("email").value;
          var password = document.getElementById("password").value;
@@ -311,31 +309,94 @@
          var address = document.getElementById("address").value;
          var email_pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
 
-         if((username.trim()).length < 1 ){
-             document.getElementById("umessage").innerHTML = "Enter Name";
-         }
-         else if ((email.trim()).length < 1 ){
-             document.getElementById("emessage").innerHTML = "Enter proper Email ID";
-         }
-         else if (!email_pattern.test(email)){
+         if((email.trim()).length < 1 ){
+              document.getElementById("umessage").innerHTML = "";
+              document.getElementById("emessage").innerHTML = "";
+              document.getElementById("pmessage").innerHTML = "";
+              document.getElementById("mmessage").innerHTML = "";
+              document.getElementById("cmessage").innerHTML = "";
+              document.getElementById("smessage").innerHTML = "";
+              document.getElementById("amessage").innerHTML = "";
               document.getElementById("emessage").innerHTML = "Enter proper Email ID";
          }
+         else if (!email_pattern.test(email)){
+              document.getElementById("umessage").innerHTML = "";
+              document.getElementById("emessage").innerHTML = "";
+              document.getElementById("pmessage").innerHTML = "";
+              document.getElementById("mmessage").innerHTML = "";
+              document.getElementById("cmessage").innerHTML = "";
+              document.getElementById("smessage").innerHTML = "";
+              document.getElementById("amessage").innerHTML = "";
+              document.getElementById("emessage").innerHTML = "Enter proper Email ID";
+         }
+         else if ((username.trim()).length < 1 ){
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
+            document.getElementById("umessage").innerHTML = "Enter Name";
+         }
          else if ((password.trim()).length < 1 ){
-             document.getElementById("pmessage").innerHTML = "Enter Password";
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "Enter Password";
          }
          else if ((mobile.trim()).length != 10 ){
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
             document.getElementById("mmessage").innerHTML = "Enter 10 digit mobile number";
          }
          else if ((country.trim()).length < 1 ){
-             document.getElementById("cmessage").innerHTML = "Select Country";
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "Select Country";
          }
          else if ((state.trim()).length < 1 ){
-             document.getElementById("smessage").innerHTML = "Select State";
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "Select State";
          }
          else if ((address.trim()).length < 1 ){
-             document.getElementById("amessage").innerHTML = "Enter Address";
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "Enter Address";
          }
          else{
+            document.getElementById("umessage").innerHTML = "";
+            document.getElementById("emessage").innerHTML = "";
+            document.getElementById("pmessage").innerHTML = "";
+            document.getElementById("mmessage").innerHTML = "";
+            document.getElementById("cmessage").innerHTML = "";
+            document.getElementById("smessage").innerHTML = "";
+            document.getElementById("amessage").innerHTML = "";
             $.ajax({
                 type: "GET",
                 url: "{% url 'admin_register' %}" ,
@@ -347,9 +408,7 @@
             $('#step1').hide();
             $('#step3').hide();
          }
-
       }
-
    </script>
 
       <script>
@@ -579,25 +638,74 @@ var courses = ["Charde Marshall", "Brielle Williamson","Argentina", "Aldous Dris
         let payment = document.getElementById("payment").value;
         let productdes = document.getElementById("description").value;
         if ((productname.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessages").innerHTML = "Select Product";
          }
          else if ((productprice.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessagep").innerHTML = "Enter Price";
          }
          else if ((productdays.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessaged").innerHTML = "Enter Duration";
          }
          else if ((productadays.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessagea").innerHTML = "Select Active Date";
          }
          else if ((payment.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessagepa").innerHTML = "Select Payment";
          }
          else if ((productdes.trim()).length < 1 ){
+             document.getElementById("pmessages").innerHTML = "";
+             document.getElementById("pmessagep").innerHTML = "";
+             document.getElementById("pmessaged").innerHTML = "";
+             document.getElementById("pmessagea").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagepa").innerHTML = "";
+             document.getElementById("pmessagede").innerHTML = "";
              document.getElementById("pmessagede").innerHTML = "Enter Description";
          }
 
          else{
+           document.getElementById("pmessages").innerHTML = "";
+           document.getElementById("pmessagep").innerHTML = "";
+           document.getElementById("pmessaged").innerHTML = "";
+           document.getElementById("pmessagea").innerHTML = "";
+           document.getElementById("pmessagepa").innerHTML = "";
+           document.getElementById("pmessagepa").innerHTML = "";
+           document.getElementById("pmessagede").innerHTML = "";
           tbodyEl.innerHTML += `
             <tr>
               <td id="proname">${productname}</td>
@@ -647,6 +755,4 @@ var courses = ["Charde Marshall", "Brielle Williamson","Argentina", "Aldous Dris
                         "proactive":proactive, "expiry_date":expiry_date, "payment":payment,  "userid":{{user.id}}},
                 });
       }
-
-
 </script>

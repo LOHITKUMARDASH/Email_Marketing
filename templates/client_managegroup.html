@@ -141,7 +141,6 @@
   function test(val)
     {
       var t = val
-      console.log(t)
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -156,10 +155,22 @@
                 type: "GET",
                 url: "{% url 'client_group_delete' %}" ,
                 data:{"value":t},
-                });
-              window.location.replace('/client_managegroup');
+                success: function () {
+                    window.location.reload('/client_managegroup');
+                }});
             }
           });
        }
+</script>
+
+<script>
+  function test1(){
+        $.ajax({
+                type: "GET",
+                url: "{% url 'count_group' %}" ,
+                data:{"userid": {{user.id}} },
+                });
+       }
+       window.onload = test1;
 </script>
 

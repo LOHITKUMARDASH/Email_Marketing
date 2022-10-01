@@ -59,8 +59,23 @@ def admin_register(request):
         is_admin = True
         user = NewUser(user_name=username, email=email, mobile=mobile, password=password,country=country, state=state, Address=address, is_admin=is_admin, is_active=is_active)
         user.set_password(password)
-        user.save()
+        # user.save()
         print("END")
+
+        # Send Mail When Admin Register
+        subject = "Registration Successfully Done"
+        message = "Login Credential"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        html_message = render_to_string(
+            '../templates/registration_template.html',
+            {
+                "Email": email,
+                "Password": password
+            }
+        )
+        print('Mail Sent')
+        send_mail(subject, message, email_from, recipient_list, fail_silently=True, html_message=html_message)
         return HttpResponse(username)
 
 def admin_details(request):
@@ -133,6 +148,7 @@ def settingss(request, id):
         username = request.POST['username']
         # password = request.POST['password']
         name = request.POST['companyname']
+        print(name)
         email = request.POST['email']
         contactnumber = request.POST['contactnumber']
         gstin = request.POST['gstin']
@@ -333,6 +349,21 @@ def client_register(request):
         user.set_password(password)
         user.save()
         print("END")
+
+        # Send Mail When Client Register
+        subject = "Registration Successfully Done"
+        message = "Login Credential"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+        html_message = render_to_string(
+            '../templates/registration_template.html',
+            {
+                "Email": email,
+                "Password": password
+            }
+        )
+        print('Mail Sent')
+        send_mail(subject, message, email_from, recipient_list, fail_silently=True, html_message=html_message)
         return HttpResponse(username)
 
 
@@ -526,10 +557,14 @@ def customerlists(request, name):
 
 def client_managegroup(request):
     data = group.objects.all()
+    datas = customers.objects.all()
     all_data_group = []
+    all_data_customer = []
     for x in data:
         all_data_group.append(x)
-    return render(request, 'client_managegroup.html', {'message': all_data_group})
+    for x in datas:
+        all_data_customer.append(x)
+    return render(request, 'client_managegroup.html', {'message': all_data_group, 'messages': all_data_customer})
 
 def contact(request, id):
     print(id)
@@ -656,7 +691,7 @@ def email_delete(request):
     if request.method == "GET" and (request.headers.get('x-requested-with') == 'XMLHttpRequest'):
         value = request.GET['value']
         print(value)
-        # customers.objects.filter(id=int(value)).delete()
+        customers.objects.filter(id=int(value)).delete()
     return redirect('customerlist')
 
 
@@ -673,7 +708,6 @@ def update_client_template_details(request):
         template.objects.filter(file_id=fileid).update(logolink=companyurl, welcomeText=wtext, title=title,  buttonname=bname, buttonlink=buttonurl, description=description, copyright=copyright)
     return HttpResponse("HIII")
 
-
 # from Crypto.Cipher import AES
 def passcode(request):
     data = NewUser.objects.all().order_by('-created_at')
@@ -685,3 +719,57 @@ def passcode(request):
             # decoded_text = cipher_suite.decrypt(enc)
             # print(decoded_text)
     return render(request, 'login.html')
+
+def count_group(request):
+    if request.method == "GET" and (request.headers.get('x-requested-with') == 'XMLHttpRequest'):
+        userid = request.GET['userid']
+        data = group.objects.all()
+        datas = customers.objects.all()
+        for groups in data:
+            if groups.cid == int(userid):
+                g = groups.name+"count"
+                g = 0
+                for u in datas:
+                    # for d in u.checks:
+                    for groups.name in u.checks:
+                        g+=1
+                    print(g)
+                break
+            break
+
+    return HttpResponse("HIII")
+
+
+def update_setting(request):
+    if request.method == "GET" and (request.headers.get('x-requested-with') == 'XMLHttpRequest'):
+        companyname = request.GET['companyname']
+        email = request.GET['email']
+        contactnumber = request.GET['contactnumber']
+        gstin = request.GET['gstin']
+        panno = request.GET['panno']
+        website = request.GET['website']
+        currency = request.GET['currency']
+        address = request.GET['address']
+        bankname = request.GET['bankname']
+        branchname = request.GET['branchname']
+        accountname = request.GET['accountname']
+        accounttype = request.GET['accounttype']
+        bankaccountno = request.GET['bankaccountno']
+        ifscno = request.GET['ifscno']
+        heading = request.GET['heading']
+        client = request.GET['client']
+        price = request.GET['price']
+        subtotal = request.GET['subtotal']
+        totalamount = request.GET['totalamount']
+        thankyoumassage = request.GET['thankyoumassage']
+        footernotes = request.GET['footernotes']
+        termsandconditions = request.GET['termsandconditions']
+        termsandconditionsdetails = request.GET['termsandconditionsdetails']
+        # uploadyourcompanystamp = request.GET['uploadyourcompanystamp']
+        # companylogo = request.GET['companylogo']
+        user_id = request.GET['user_id']
+        invoice_settings.objects.filter(user_id=user_id).update(CompanyName=companyname, email=email,ContactNumber=contactnumber, GSTIN=gstin,PanNo=panno,Website=website,Currency=currency,Address=address,BankName=bankname,BranchName=branchname,
+                                                                AccountName=accountname,AccountType=accounttype,BankAccountNo=bankaccountno,IFSCNo=ifscno,Heading=heading,Client=client,Price=price,SubTotal=subtotal,TotalAmount=totalamount,
+                                                                ThankyouMassage=thankyoumassage,FooterNotes=footernotes,TermsandConditions=termsandconditions,TermsandConditionsDetails=termsandconditionsdetails)
+        print(user_id)
+    return HttpResponse("HIII")

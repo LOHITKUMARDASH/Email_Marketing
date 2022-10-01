@@ -4,7 +4,7 @@
       <h4 class="mb-sm-0">Client Details</h4>
       <div class="page-title-right">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"> <a href="#">Dashboard</a> </li>
+          <li class="breadcrumb-item"> <a href="{% url 'client_dashboard' %}">Dashboard</a> </li>
           <li class="breadcrumb-item active">Client Details</li>
         </ol>
       </div>
@@ -306,7 +306,6 @@
   function email(val)
       {
         var t = val
-        console.log(t)
         {% for email in messages %}
                 x = {{email.id}}
                 if (x == t){
@@ -322,7 +321,6 @@
     function test(val)
     {
       var t = val
-      console.log(t)
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -337,8 +335,9 @@
                 type: "GET",
                 url: "{% url 'email_delete' %}" ,
                 data:{"value":t},
-                });
-              window.location.replace('/customerlist');
+                success: function () {
+                    window.location.reload('/customerlist');
+                }});
             }
           });
        }

@@ -6,7 +6,7 @@
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
                   </li>
                   <li class="breadcrumb-item active">Setting</li>
                 </ol>
@@ -34,40 +34,38 @@
 
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Company Name</label>
-                            <input type="text" class="form-control is-valid" name="companyname" placeholder="">
+                            <input type="text" class="form-control is-valid" name="companyname" id="companyname" placeholder="companyname">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="demo@gmail.com">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Contact Number</label>
-                            <input type="text" class="form-control" name="contactnumber" placeholder="">
+                            <input type="text" class="form-control" id="contactnumber" name="contactnumber" placeholder="phoneNumber">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>GSTIN</label>
-                            <input type="text" class="form-control" placeholder="" name="gstin">
+                            <input type="text" class="form-control" placeholder="GSTIN" id="gstin" name="gstin">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Pan No</label>
-                            <input type="text" class="form-control" placeholder="" name="panno">
+                            <input type="text" class="form-control" placeholder="PAN No" name="panno" id="panno">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Website</label>
-                            <input type="text" class="form-control" placeholder="" name="website">
+                            <input type="text" class="form-control" placeholder="Company Website" name="website" id="website">
                         </div>
 
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Currency</label>
-                            <input type="text" class="form-control" placeholder="" name="currency">
+                            <input type="text" class="form-control" placeholder="Currency Symbol" name="currency" id="currency">
                         </div>
 
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Company Logo</label>
-                            <input type="file" class="form-control-file" placeholder="" name="companylogo">
+                            <input type="file" class="form-control-file" placeholder="companylogo" name="companylogo" id="companylogo">
                         </div>
-
-
 
 <!--                        <div class="form-group col-lg-4 col-sm-6 col-12 float-left">-->
 <!--                          <label>Password</label>-->
@@ -76,7 +74,7 @@
 
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Address</label>
-                          <textarea class="form-control" name="address" rows="3"></textarea>
+                          <textarea class="form-control" name="address" id="address" placeholder="Write Your Address Here" rows="3"></textarea>
                         </div>
 
                     </div>
@@ -94,27 +92,27 @@
                     <div class="row settingcont">
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Bank Name</label>
-                            <input type="text" class="form-control is-valid" placeholder="" name="bankname">
+                            <input type="text" class="form-control is-valid" placeholder="" name="bankname" id="bankname">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Branch Name</label>
-                            <input type="text" class="form-control" placeholder="" name="branchname">
+                            <input type="text" class="form-control" placeholder="Branch Name" name="branchname" id="branchname">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Account Name</label>
-                            <input type="text" class="form-control" placeholder="" name="accountname">
+                            <input type="text" class="form-control" placeholder="Account Number" name="accountname" id="accountname">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Account Type</label>
-                            <input type="text" class="form-control" placeholder="" name="accounttype">
+                            <input type="text" class="form-control" placeholder="Account Type" name="accounttype" id="accounttype">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Bank Account No</label>
-                            <input type="text" class="form-control" placeholder="" name="bankaccountno">
+                            <input type="text" class="form-control" placeholder="Bank Account Number" name="bankaccountno" id="bankaccountno">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>IFSC No</label>
-                            <input type="text" class="form-control" placeholder="" name="ifscno">
+                            <input type="text" class="form-control" placeholder="IFSC No" name="ifscno" id="ifscno">
                         </div>
 
                     </div>
@@ -134,31 +132,31 @@
                     <div class="row settingcont">
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Heading</label>
-                            <input type="text" class="form-control is-valid" placeholder="Tax Invoice" name="heading">
+                            <input type="text" class="form-control is-valid" placeholder="Tax Invoice" name="heading" id="heading">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Client</label>
-                            <input type="text" class="form-control" placeholder="Bill To" name="client">
+                            <input type="text" class="form-control" placeholder="Bill To" name="client" id="client">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Price</label>
-                            <input type="text" class="form-control" placeholder="Rate" name="price">
+                            <input type="text" class="form-control" placeholder="Rate" name="price" id="price">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>SubTotal</label>
-                            <input type="text" class="form-control" placeholder="SubTotal" name="subtotal">
+                            <input type="text" class="form-control" placeholder="SubTotal" name="subtotal" id="subtotal">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Total Amount</label>
-                            <input type="text" class="form-control" placeholder="Total Amount" name="totalamount">
+                            <input type="text" class="form-control" placeholder="Total Amount" name="totalamount" id="totalamount">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Thankyou Massage</label>
-                            <input type="text" class="form-control" placeholder="This is computer generated invoice" name="thankyoumessage">
+                            <input type="text" class="form-control" placeholder="This is computer generated invoice" name="thankyoumessage" id="thankyoumassage">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Footer Notes</label>
-                            <input type="text" class="form-control" placeholder="Copyright @ 2022" name="footernotes">
+                            <input type="text" class="form-control" placeholder="Copyright @ 2022" name="footernotes" id="footernotes">
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Upload Your Company Stamp</label>
@@ -166,18 +164,19 @@
                         </div>
                         <div class="form-group col-lg-4 col-sm-6 col-12 float-left">
                           <label>Terms and Conditions</label>
-                            <input type="text" class="form-control" placeholder="Terms and Conditions" name="termsandconditions">
+                            <input type="text" class="form-control" placeholder="Terms and Conditions" name="termsandconditions" id="termsandconditions">
                         </div>
                         <div class="form-group col-lg-8 col-sm-6 col-12 float-left">
                           <label>Terms and Conditions Details</label>
-                          <textarea class="form-control" name="termsandconditionsdetails" rows="3" placeholder="Enter your terms and condtions details"></textarea>
+                          <textarea class="form-control" name="termsandconditionsdetails" rows="3" placeholder="Enter your terms and condtions details" id="termsandconditionsdetails"></textarea>
                         </div>
-                      <center><button type="submit" class="btn btn-primary bttn-editcode">Save<i class="fal fa-arrow-to-right"></i></button></center>
+                      <center><button type="submit" class="btn btn-primary bttn-editcode" id="save">Save<i class="fal fa-arrow-to-right"></i></button></center>
                     </div>
                   </div>
                 </div>
               </div>
             </form>
+              <center><button type="submit" class="btn btn-primary bttn-editcode" id="update" onclick="update_settingss()">Update<i class="fal fa-arrow-to-right"></i></button></center>
             <!--- form end --->
           </div>
           <!--- View Admin Details --->
@@ -230,4 +229,85 @@
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
       })
     });
+    });
+</script>
+
+<script>
+    function edit_setting(){
+        {% for client in message %}
+            document.getElementById("companyname").value = "{{client.CompanyName}}";
+            document.getElementById("email").value = "{{client.email}}";
+            document.getElementById("contactnumber").value = "{{client.ContactNumber}}";
+            document.getElementById("gstin").value = "{{client.GSTIN}}";
+            document.getElementById("panno").value = "{{client.PanNo}}";
+            document.getElementById("website").value = "{{client.Website}}";
+            document.getElementById("currency").value = "{{client.Currency}}";
+            document.getElementById("address").value = "{{client.Address}}";
+            document.getElementById("bankname").value = "{{client.BankName}}";
+            document.getElementById("branchname").value = "{{client.BranchName}}";
+            document.getElementById("accountname").value = "{{client.AccountName}}";
+            document.getElementById("accounttype").value = "{{client.AccountType}}";
+            document.getElementById("bankaccountno").value = {{client.BankAccountNo}};
+            document.getElementById("ifscno").value = "{{client.IFSCNo}}";
+            document.getElementById("heading").value = "{{client.Heading}}";
+            document.getElementById("client").value = "{{client.Client}}";
+            document.getElementById("price").value = "{{client.Price}}";
+            document.getElementById("subtotal").value = "{{client.SubTotal}}";
+            document.getElementById("totalamount").value = "{{client.TotalAmount}}";
+            document.getElementById("thankyoumassage").value = "{{client.ThankyouMassage}}";
+            document.getElementById("footernotes").value = "{{client.FooterNotes}}";
+            document.getElementById("termsandconditions").value = "{{client.TermsandConditions}}";
+            document.getElementById("termsandconditionsdetails").value = `{{client.TermsandConditionsDetails}}`;
+
+<!--            document.getElementById("uploadyourcompanystamp").value = {{client.UploadYourCompanyStamp}};-->
+<!--            document.getElementById("companylogo").value = "{{client.CompanyLogo}}";-->
+
+           document.getElementById("update").style.display='';
+           document.getElementById("save").style.display='None';
+        {% endfor %}
+    }
+    window.onload = edit_setting;
+</script>
+
+<script>
+    function update_settingss(){
+        var companyname = document.getElementById("companyname").value;
+        var email = document.getElementById("email").value;
+        var contactnumber = document.getElementById("contactnumber").value;
+        var gstin = document.getElementById("gstin").value;
+        var panno = document.getElementById("panno").value;
+        var website = document.getElementById("website").value;
+        var currency = document.getElementById("currency").value;
+        var address = document.getElementById("address").value;
+        var bankname = document.getElementById("bankname").value;
+        var branchname = document.getElementById("branchname").value;
+        var accountname = document.getElementById("accountname").value;
+        var accounttype = document.getElementById("accounttype").value;
+        var bankaccountno = document.getElementById("bankaccountno").value;
+        var ifscno = document.getElementById("ifscno").value;
+        var heading = document.getElementById("heading").value;
+        var client = document.getElementById("client").value;
+        var price = document.getElementById("price").value;
+        var subtotal = document.getElementById("subtotal").value;
+        var totalamount = document.getElementById("totalamount").value;
+        var thankyoumassage = document.getElementById("thankyoumassage").value;
+        var footernotes = document.getElementById("footernotes").value;
+        var termsandconditions = document.getElementById("termsandconditions").value;
+        var termsandconditionsdetails = document.getElementById("termsandconditionsdetails").value;
+
+        var uploadyourcompanystamp = document.getElementById("uploadyourcompanystamp");
+        var companylogo = document.getElementById("companylogo");
+
+        $.ajax({
+                type: "GET",
+                url: "{% url 'update_setting' %}" ,
+                data:{"companyname":companyname, "email":email, "contactnumber":contactnumber, "gstin":gstin, "panno":panno,
+                        "website":website, "currency":currency, "address":address, "bankname":bankname,"branchname":branchname, "accountname":accountname,
+                        "accounttype":accounttype, "bankaccountno":bankaccountno, "ifscno":ifscno, "heading":heading, "client":client,
+                        "price":price, "subtotal":subtotal, "totalamount":totalamount, "thankyoumassage":thankyoumassage, "footernotes":footernotes,
+                        "termsandconditions":termsandconditions, "termsandconditionsdetails":termsandconditionsdetails, "user_id": {{user.id}},},
+                success: function () {
+                    window.location.reload('/settingss/{{user.id}}');
+                }});
+                }
 </script>

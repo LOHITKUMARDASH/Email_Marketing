@@ -7,7 +7,7 @@
                <div class="page-title-right">
                  <ol class="breadcrumb m-0">
                    <li class="breadcrumb-item">
-                     <a href="#">Dashboard</a>
+                     <a href="{% url 'client_dashboard' %}">Dashboard</a>
                    </li>
                    <li class="breadcrumb-item active">Template</li>
                  </ol>
@@ -280,20 +280,16 @@ $('.delete-msg').click(function() {
   }
 })
 });
-
-  });
+});
 </script>
 <script>
     function temp(val)
     {
       var t = val
-      console.log(t)
       document.getElementById("fileid").value = t;
       {% for tempe in messages %}
         x = {{tempe.file_id}}
-        console.log(x)
         if (x == t){
-            console.log("HIIII")
             document.getElementById("logo").innerHTML = "{{tempe.logo}}";
             document.getElementById("companyurl").value = "{{tempe.logolink}}";
             document.getElementById("wtext").value = "{{tempe.welcomeText}}";
@@ -311,30 +307,13 @@ $('.delete-msg').click(function() {
     function tempsent(val)
     {
       var t = val
-      console.log(t)
       document.getElementById("fileids").value = t;
       {% for tempe in message %}
         if (t == {{tempe.id}}){
             document.getElementById("tempname").innerHTML = "{{tempe.templates}}";
         }
       {% endfor %}
-<!--      $.ajax({-->
-<!--        url: 'http:///send_email/'+t+'/'+{{user.id}},-->
-<!--      });-->
-<!--        window.location.replace('/client_template');-->
     }
-
-
-<!--    function tempsents(){-->
-<!--        console.log("HIIII")-->
-<!--        var h = document.getElementById("tempname").innerHTML;-->
-<!--        var i = document.querySelector('.form-check-input').checked.innerHTML;-->
-<!--        console.log(i)-->
-<!--        $.ajax({-->
-<!--        url: 'http:///send_email/'+h+'/'+{{user.id}},-->
-<!--        });-->
-<!--        window.location.replace('/client_template');-->
-<!--    }-->
 </script>
  <script>
         function DoOnSubmit(){
@@ -344,8 +323,6 @@ $('.delete-msg').click(function() {
           var SubmitButtonElement = document.getElementById("submitdisable");
           SubmitButtonElement.style.display = "block";
 
-<!--          var SubmittingNote = document.getElementById("SubmitNotice");-->
-<!--          SubmittingNote.style.display = "inline";-->
           return false;
         }
         function update(){
@@ -362,10 +339,9 @@ $('.delete-msg').click(function() {
                 url: "{% url 'update_client_template_details' %}" ,
                 data:{"companyurl":companyurl, "wtext":wtext,"title":title, "bname":bname,
                         "buttonurl":buttonurl, "description":description, "copyright":copyright,  "fileid":fileid},
-                });
-                window.location.replace('/client_template');
+                success: function () {
+                    window.location.reload('/client_template');
+                }});
                  }
-
     </script>
-     
 </html>

@@ -89,7 +89,7 @@
         </a>
       </li>
       <li>
-        <a onclick="sett()" href="/settingss/{{user.id}}">
+        <a onclick="sett()" href="{% url 'settingss' user.id %}">
           <i class="far fa-users-cog"></i>
           <span class="mobile-disable"> Setting </span>
         </a>
@@ -97,7 +97,7 @@
     </ul>
     <div class="dropdown ms-sm-3 header-item topbar-user">
       <span class="user-profileadmin">
-        <img class="rounded-circle header-profile-user" src="../static/assets/images/avatar-1.jpg" alt="Super Admin">
+<!--        <img class="rounded-circle header-profile-user" src="../static/assets/images/avatar-1.jpg" alt="Super Admin">-->
         <span class="text-start ms-xl-2">
           <span class="d-xl-inline-block ms-1 fw-medium user-name-text">{{user.user_name}}</span>
           <span class="d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Super Admin</span>

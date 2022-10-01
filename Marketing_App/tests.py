@@ -21,3 +21,23 @@
 # # print("encrypted string: ", type(encMessage))
 # decMessage = fernet.decrypt(res).decode()
 # print("decrypted string: ", decMessage)
+
+
+# console.log("IN the client manage ")
+#           {% for group in message %}
+#           {% if group.cid == user.id %}
+#              count = "{{group.name}}"+"count"
+#              count = 0
+#              console.log(count)
+#              {% for customer in messages %}
+#                 u = customer.checks
+#                 console.log(u)
+#              {% endfor %}
+#           {% endif %}
+#           {% endfor %}
+
+# $.ajax({
+#                 type: "GET",
+#                 url: "{% url 'count_group' %}" ,
+#                 data:{"userid": {{user.id}} },
+#                 });
